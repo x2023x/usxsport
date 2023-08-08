@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="/./css/index.css">
+          <link rel="stylesheet" href="/./css/standings.css">
+          <link rel="stylesheet" href="/./css/nav.css">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+          <script src="/navbar.js" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+          <script src="https://kit.fontawesome.com/2c1b23ff4c.js" crossorigin="anonymous"></script>
+          <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
+     </head>
+<body>
+
+     <header>
+          <nav>
+               <div>
+                    <img src="https://seeklogo.com/images/H/heisenberg-logo-6ACACAD210-seeklogo.com.png" alt="ucl">
+                    <h2>هايزيـن</h2>
+               </div>
+               <ul class="links">
+                    <li><a href="/">الصفحة الرئيسية</a></li>
+                    <li><a href="/matchday?<%= moment().format("YYYY-MM-DD") %>">مباريات اليوم</a></li>
+                    <li class="dropdown-leagues" id="leagues-toggle">
+                         <a href="#" onclick="addActive()">ترتيب الدوريات</a>
+                         
+                         
+                              <ul class="leagues-dropdown hidden">
+                                   <li>
+                                        <a href="/laliga-table">الدوري الاسباني</a>
+                                        <img src="https://www.fifplay.com/img/public/laliga-logo.png" alt="laliga">
+                                   </li>
+                                   <li>
+                                        <a href="/premierleague-table">الدوري الانكليزي</a>
+                                        <img src="https://www.fifplay.com/img/public/premier-league-2-logo.png" alt="premier-league">
+                                   </li>
+                                   <li>
+                                        <a href="/bundesliga-table">الدوري الالماني</a>
+                                        <img src="https://www.fifplay.com/img/public/bundesliga-logo.png" alt="bundesliga">
+                                   </li>
+                                   <li>
+                                        <a href="/seriea-table">الدوري الايطالي</a>
+                                        <img src="https://www.fifplay.com/img/public/serie-a-logo.png" alt="serieA">
+                                   </li>
+                                   <li>
+                                        <a href="/liguea-table">الدوري الفرنسي</a>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ligue1_Uber_Eats_logo.png/523px-Ligue1_Uber_Eats_logo.png" alt="liguea">
+                                   </li>
+                              </ul>
+                         
+                    </li>
+                    <li id="last"><img src="https://imagecache.365scores.com/image/upload/f_png,w_68,h_68,c_limit,q_auto:eco,dpr_2,d_Countries:Round:19.png/v4/Competitions/572" alt="ucl"><a href="/ucl">دوري ابطال اوروبا</a></li>
+               </ul>
+               <div id="hamburger" onclick="showLinks()">
+                    <i class="fa-solid fa-bars fa-2xl" style="color: #369457;"></i>
+               </div>
+          </nav>
+     </header>
+
+<script src="script.js"></script>
+    <style>
+        /* CSS styles for the slider */
+        #slider {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        #slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CSS styles for the football content section */
+        #football-content {
+            padding: 50px;
+        }
+
+        .football-images {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .football-images img {
+            width: 30%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .football-information {
+            margin-top: 20px;
+        }
+
+        .football-information h2 {
+            color: #333;
+        }
+
+        /* CSS styles for the footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main  style="width: 100vw;">
+
+     <div class="slider responsive" width='450' height='251'>
+          <div src="/images/slide1.jpg"></div>
+          <div src="/images/slide2.jpg"></div>
+          <div src="/images/slide3.jpg"></div>
+     </div>
+
+     <section id="football-content"  style="width: 100%;">
+            <h2>مباريات الدوريات الخمسة الكبرى</h1>
+            <p>Explore the latest news, matches, and updates from the football world.</p>
+            
+            <div class="football-information">
+                <h2>تحديثات دورية</h2>
+                <p>نقدم لك تحليلات مفصلة تشمل أداء الفرق واللاعبين والإحصائيات المهمة، مما يساعدك على فهم أفضل لمجريات المباريات وتطورات الدوري.</p>
+                
+                <h2>احصائيات ونتائج مباشرة</h2>
+                <p>مباريات يوميا وترتيب الدوريات الخمسة الكبرى ودوري ابطال اوروبا مع احدث الاحصائيات</p>
+            </div>
+        </section>
+    </main>
+    <div class="share-links">
+     <div>
+          <img width="20" src="https://logodownload.org/wp-content/uploads/2017/11/telegram-logo-8.png"><a href="https://t.me/l0OOI" class="share-link" style="text-decoration: none; color: #1e8efe;"> HeisenUSX</a>
+     </div>
+     <div>
+          <img width="20" src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638258077460000000"><a href="https://x.com/IOO0K" style="text-decoration: none; color: #333;" class="share-link"> HeisenUSX</a>
+     </div>
+</div>
+    <br><br><br><br><br><br>
+    <footer style="position: fixed; width: 100%; bottom: 0; left: 0;">
+        <p>© Heisen. جميع الحقوق محفوظة 2023</p>
+    </footer>
+
+    <script>
+        // JavaScript code for the slider
+        const slider = document.querySelector("#slider");
+        const images = slider.getElementsByTagName("img");
+        let currentIndex = 0;
+
+        function changeSlide() {
+            for (let i = 0; i < images.length; i++) {
+                images[i].style.display = "none";
+            }
+
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.display = "block";
+        }
+
+        setInterval(changeSlide, 3000);
+    </script>
+     
+     
+<script src="index.js"></script>
+<script src="navbar.js"></script>
+</body>
+</html>
