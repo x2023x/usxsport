@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+     <link rel="stylesheet" href="/./css/ucl.css">
+     <%- include('../partials/head.ejs') %>
+<body>
+     <%- include('../partials/navbar.ejs') %>
+
+     <div class="header" dir="rtl">
+          <div>
+               <h1>دوري ابطال اوروبا - مباريات ونتائج</h1>
+               <ul class="sub-navbar">
+                    <a href="/ucl"><li class="item1">نتائج</li></a>
+                    <a href="/ucl/stats"><li class="item2">احصائيات</li></a>
+                    <a href="/ucl/groups"><li class="item3">المجموعات</li></a>
+                    <a href="/ucl/brackets"><li class="item4">الادوار الاقصائية</li></a>
+               </ul>
+          </div>
+     </div>
+     <div class="ucl-container">
+          <div class="stats">
+               <div class="scorers-head ul__stats__head">
+                    <h2>- الهدافون -</h2>
+               </div>
+               <ul class="scorers ul__stats">
+                    <% stats.stats[0].rows.forEach(player => { %>
+                    <li class="scorer" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-scorers show-btn">عرض المزيد</button>
+               <button class="show-less-button-scorers show-btn">عرض اقل</button>
+               <br>
+               
+               <div class="assists-head ul__stats__head">
+                    <h2>- صناعة -</h2>
+               </div>
+               <ul class="assists ul__stats">
+                    <% stats.stats[1].rows.forEach(player => { %>
+                    <li class="assister" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-assists show-btn">عرض المزيد</button>
+               <button class="show-less-button-assists show-btn">عرض اقل</button>
+               <br>
+               
+               <div class="penalities-head ul__stats__head">
+                    <h2>- ركلات الجزاء المسجلة -</h2>
+               </div>
+               <ul class="penalities ul__stats">
+                    <% stats.stats[3].rows.forEach(player => { %>
+                    <li class="penalitier" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-penalities show-btn">عرض المزيد</button>
+               <button class="show-less-button-penalities show-btn">عرض اقل</button>
+               <br>
+               
+               <div class="redCards-head ul__stats__head">
+                    <h2>- بطاقات حمراء -</h2>
+               </div>
+               <ul class="redCards ul__stats">
+                    <% stats.stats[5].rows.forEach(player => { %>
+                    <li class="redCards" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-redCards show-btn">عرض المزيد</button>
+               <button class="show-less-button-redCards show-btn">عرض اقل</button>
+               <br>
+               
+               <div class="yellowCards-head ul__stats__head">
+                    <h2>- بطاقات صفراء -</h2>
+               </div>
+               <ul class="yellowCards ul__stats">
+                    <% stats.stats[6].rows.forEach(player => { %>
+                    <li class="yellowCards" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-yellowCards show-btn">عرض المزيد</button>
+               <button class="show-less-button-yellowCards show-btn">عرض اقل</button>
+               <br>
+               
+               <div class="cleanSheets-head ul__stats__head">
+                    <h2>- شباك نظيفة -</h2>
+               </div>
+               <ul class="cleanSheets ul__stats">
+                    <% stats.stats[7].rows.forEach(player => { %>
+                    <li class="cleanSheets" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-cleanSheets show-btn">عرض المزيد</button>
+               <button class="show-less-button-cleanSheets show-btn">عرض اقل</button>
+               <br>
+               
+               <div class="penalitySave-head ul__stats__head">
+                    <h2>- تصديات لضربات الجزاء -</h2>
+               </div>
+               <ul class="penalitySave ul__stats">
+                    <% stats.stats[8].rows.forEach(player => { %>
+                    <li class="penalitySave" dir="rtl">
+                         <div>
+                              <div>
+                                   <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= player.entity.id %>" alt="player">
+                              </div>
+                              <div class="player-details">
+                                   <p class="player-name" dir="rtl"><%= player.entity.shortName %></p>
+                                   <p><%= player.entity.positionShortName %></p>
+                              </div>
+                         </div>
+                         <div>
+                              <p><%= player.stats[0].value %></p>
+                         </div>
+                    </li>
+                    <% }) %>
+               </ul>
+               <button class="show-more-button-penalitySave show-btn">عرض المزيد</button>
+               <button class="show-less-button-penalitySave show-btn">عرض اقل</button>
+               <br>
+          </div>
+     </div>
+
+     
+     <script src="/index.js"></script>
+     <script src="/uclStats.js"></script>
+</body>
+</html>

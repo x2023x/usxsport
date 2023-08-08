@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+     <link rel="stylesheet" href="/./css/ucl.css">
+     <link rel="stylesheet" href="/./css/ucl.groups.css">
+     <%- include('../partials/head.ejs') %>
+<body>
+     <%- include('../partials/navbar.ejs') %>
+
+     <div class="header" dir="rtl">
+          <div>
+               <h1>دوري ابطال اوروبا - مباريات ونتائج</h1>
+               <ul class="sub-navbar">
+                    <a href="/ucl"><li class="item1">نتائج</li></a>
+                    <a href="/ucl/stats"><li class="item2">احصائيات</li></a>
+                    <a href="/ucl/groups"><li class="item3">المجموعات</li></a>
+                    <a href="/ucl/brackets"><li class="item4">الادوار الاقصائية</li></a>
+               </ul>
+          </div>
+     </div>
+     <div class="group-stage-con">
+          <div class="groups-head">
+               <h3> دور المجموعات </h3>
+          </div>
+          <div class="groups">
+               <% if(!groups) { %>
+                    <h3>لا يتوفر الترتيب حالياً</h3>
+                    <% } else { %>
+                         <% groups.standings.forEach(group => { %>
+                              <div class="group">
+                                   <div class="group-header">
+                                        <h3><%= group.group.split("_")[1] %> المجموعة</h3>
+                                   </div>
+                                   <div class="group-body">
+                                        <table>
+                                             <thead>
+                                                  <tr>
+                                                       <td>ت</td>
+                                                       <td>الفريق</td>
+                                                       <td>المباريات</td>
+                                                       <td>فوز</td>
+                                                       <td>تعادل</td>
+                                                       <td>خسارة</td>
+                                                       <td>الاهداف</td>
+                                                       <td>النقاط</td>
+                                                  </tr>
+                                             </thead>
+                                             <tbody>
+                                                  <% group.table.forEach(team => { %>
+                                                  <tr>
+                                                       <td id="<% if(team.position <= 2) { %>qualified-state<% } %>"><%= team.position %></td>
+                                                       <td id="team-name"><img class="team-logo" src="<%= team.team.crest %>" alt="team-logo"> <%= team.team.shortName %></td>
+                                                       <td><%= team.playedGames %></td>
+                                                       <td><%= team.won %></td>
+                                                       <td><%= team.draw %></td>
+                                                       <td><%= team.lost %></td>
+                                                       <td><%= team.goalsFor %>:<%= team.goalsAgainst %></td>
+                                                       <td><%= team.points %></td>
+                                                  </tr>
+                                                  <% }); %>
+                                             </tbody>
+                                        </table>
+                                   </div>
+                              </div>
+                              <% }); %>
+                    <% } %>
+                    <div class="info-note">
+                         <div></div>Qualified
+                    </div>
+          </div>
+          <br>
+     </div>
+     <script src="/index.js"></script>
+     <script src="/ucl.js"></script>
+     <script src="/navbar.js"></script>
+</body>
+</html>
