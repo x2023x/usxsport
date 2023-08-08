@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+     <html lang="en">
+          <%- include('../partials/head.ejs') %>
+     <body>
+          <%- include('../partials/navbar.ejs') %>
+
+          <% if(error) { %>
+               <div class="error-message-con">
+                    <p class="error-message"><%= error %></p>
+               </div>
+               <% } else { %>
+          <div class="container">
+                    <div class="header">
+                         <a href="#" class="download-league">
+                              <img src="<%= matches[0].competition.emblem %>" alt="laliga-logo">
+                         </a>
+                                   <h2>
+                                        <% if(seasonInfo) { %>
+                                        <div>
+                                             الدوري الإسباني / الجولة <%= seasonInfo.currentMatchday %>
+                                        </div>
+                                             
+                                        <div>
+                                             <% if(seasonInfo) { %>
+                                             <%= Math.round(seasonInfo.endDate.split("-")[0])-1 + `` %>/<%= seasonInfo.endDate.split("-")[0] + `` %>
+                                             <% } %>
+                                        </div>
+                                        <% } else { %>
+                                             لا معلومات متوفرة
+                                             <% } %>
+                                   </h2>
+                    </div>
+
+               <div class="sub-container">
+                    <div class="league-table">
+                    <table>
+                              <thead>
+                                   <td>ت</td>
+                                   <td>الفريق</td>
+                                   <td>المباريات</td>
+                                   <td>اهداف</td>
+                                   <td>فوز</td>
+                                   <td>تعادل</td>
+                                   <td>خسارة</td>
+                                   <td>النقاط</td>
+                                   <td>اخر خمسة</td>
+                              </thead>
+                                   <tbody>
+                                        <% if(standings) { %>
+                                        <% standings.forEach(team => { %>
+                                             <tr>
+                                                  <td class="
+                                                  <% if (team.position<=4) { %>
+                                                       qualified-color
+                                                       <% } %>
+                                                  <% if (team.position>=18) { %>
+                                                       eliminated-color
+                                                       <% } %>
+                                                  <% if (team.position == 5 || team.position == 6) { %>
+                                                       europa-league-color
+                                                       <% } %>
+                                                  ">
+                                                       <%= team.position %>
+                                                  </td>
+                                                  <td class="team-name"><img src="<%= team.team.crestUrl %>" width="24px"><%= team.team.shortName %></td>
+                                                  <td><%= team.playedGames %></td>
+                                                  <td><%= team.goalsFor %>:<%= team.goalsAgainst %></td>
+                                                  <td><%= team.won %></td>
+                                                  <td><%= team.draw %></td>
+                                                  <td><%= team.lost %></td>
+                                                  <td><%= team.points %></td>
+                                                  <td id="team-form">
+                                                            <% let form = team.form; %>
+                                                            <% form = form.split(",") %>
+                                                            <% for(let i = 0; i < form.length; i++) { %>
+                                                            <div class="form-circle
+                                                            <% if(form[i] == "W") { %>
+                                                            form-green
+                                                                 <% } else if(form[i] == "L") { %>
+                                                            form-red
+                                                                      <% } else { %>
+                                                            form-grey
+                                                                           <% } %>
+                                                            ">
+                                                                 <%= form[i] %>
+                                                            </div>
+                                                       <% }  %>
+                                                  </td>
+                                             </tr>
+                                        <% }) %>
+                                        <% } else { %>
+                                                  <tr>
+                                                       <td>
+                                                  لا معلومات متوفرة
+                                                       </td>
+                                                  </tr>
+                                             <% } %>
+                                   </tbody>
+                    </table>
+                    <br>
+                              <div class="info">
+                                   <ul>
+                                        <li><i class="fa-solid fa-circle" style="color: #0078cf;"></i>مؤهل لدوري ابطال اوروبا</li>
+                                        <li><i class="fa-solid fa-circle" style="color: #F18727;"></i>مؤهل للدوري الاوروبي</li>
+                                        <li><i class="fa-solid fa-circle" style="color: #f71a1a;"></i>مركز الهبوط</li>
+                                   </ul>
+                                   <div class="share-links">
+                                        <div>
+                                             <img width="20" src="https://logodownload.org/wp-content/uploads/2017/11/telegram-logo-8.png"><a href="https://t.me/l0OOI" class="share-link" style="text-decoration: none; color: #1e8efe;"> HeisenUSX</a>
+                                        </div>
+                                        <div>
+                                             <img width="20" src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638258077460000000"><a href="https://x.com/IOO0K" style="text-decoration: none; color: #333;" class="share-link"> HeisenUSX</a>
+                                        </div>
+                                   </div>
+                              </div>
+                    </div>
+                    <br>
+                    <div class="league-fixtures">
+                         <div class="fixtures-head">
+                              <h3>مباريات الجولة </h3>
+                         </div>
+                         <div class="matches">
+                              <% if(matches) { %>
+                              <% matches.forEach(match => { %>
+                                        <div class="match-card">
+                                             <div class="match-home">
+                                                  <img src="<%= match.homeTeam.crest %>" alt="team-logo">
+                                                  <%= match.homeTeam.shortName %>
+                                             </div>
+               
+                                             <div class="match-teams-results">
+                                                   <p class="match-result"><%= match.score.fullTime.home %> - <%= match.score.fullTime.away %></p>
+                                                   <% if(match.status == "FINISHED") { %>
+                                                       <p class="match-time">انتهت</p>
+                                                       <% } else { %>
+                                                                 <p class="match-time">
+                                                                      <% let d = new Date(match.utcDate) %>
+                                                                      <% if(moment(d).utc().utcOffset("+03:00").format("YYYY-MM-DD") == moment().utc().utcOffset("+03:00").format("YYYY-MM-DD")) { %>اليوم<% } else { %>
+                                                                      <%= moment(d).utc().utcOffset("+03:00").format("MM") %>/<%= moment(d).utc().utcOffset("+03:00").format("DD") %> <% } %>
+                                                                 </p>
+                                                                 <% } %>
+                                             </div>
+               
+                                             <div class="match-away">
+                                                  <img src="<%= match.awayTeam.crest %>" alt="team-logo">
+                                                  <%= match.awayTeam.shortName %>
+                                             </div>
+                                        </div>
+                                   <% }) %>
+                                   <div class="note">
+                                        بتوقيت مكة المكرمة وبغداد
+                                   </div>
+                                   <% } else { %>
+                                        <p>لا توجد مباريات متوفرة</p>
+                                        <% } %>
+                                        <br><br>
+                         </div>
+                    </div>
+               </div>
+                    <% } %>
+     </div>
+<br>
+<style>
+     .header {
+          background-image: url("/images/laliga-cover.png");
+     }
+     
+     .league-table table thead {
+          background: rgb(173,111,0);
+          background: linear-gradient(90deg, rgba(173,111,0,1) 0%, rgba(213,130,36,1) 50%, rgba(124,78,28,1) 100%);
+     }
+
+     .league-fixtures .fixtures-head {
+          background: rgb(173,111,0);
+          background: linear-gradient(90deg, rgba(173,111,0,1) 0%, rgba(213,130,36,1) 50%, rgba(124,78,28,1) 100%);
+          }
+</style>
+<script src="index.js"></script>
+<script src="standing.js"></script>
+     
+</body>
+</html>
