@@ -1,0 +1,315 @@
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+.matchday-container {
+     width: 100%;
+}
+
+body {
+     background-color: #ECEEF2;
+}
+
+.matchday-container header {
+     background: rgb(0,135,32);
+     background: linear-gradient(90deg, rgba(0,135,32,1) 0%, rgb(97, 198, 15) 50%, rgba(52,175,0,1) 100%);
+     color: #333;
+     width: 100%;
+     text-align: center;
+     justify-content: center;
+     height: 3.4rem;
+}
+
+.body-content {
+     width: 100%;
+     justify-content: space-between;
+     display: flex;
+     align-items: center;
+     padding: 10px;
+     flex-direction: column;
+}
+
+header {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+}
+
+.head-title {
+     display: flex;
+     width: 100%;
+     justify-content: center;
+     flex-direction: row-reverse;
+}
+
+.head-title a {
+     font-size: 0.65rem;
+     margin: 0 0.4rem;
+     display: flex;
+     text-decoration: none;
+     justify-content: center;
+     text-align: center;
+     align-items: center;
+     border-radius: 0.4rem;
+     width: 7rem;
+     color: #fff;
+     height: 2.3rem;
+}
+
+.head-title a:nth-child(1) {
+     background-color: #104783;
+}
+.head-title a:nth-child(2) {
+     background-color: #931800;
+}
+.head-title a:nth-child(3) {
+     background-color: #caa107;
+}
+
+.leagues > div {
+     padding: 1.2rem 0.6rem;
+}
+
+.fixtures {
+     width: 100%;
+     background-color: #fff;
+     padding: 1rem;
+     margin: 0rem;
+     max-width: 1050px;
+     border-radius: 0.6rem;
+     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.today-fixtures {
+     padding: 1.2rem;
+     border-radius: 0.6rem;
+
+}
+
+.featured-fixtures {
+     display: none;
+}
+
+.league-head {
+     display: flex;
+     width: 100%;
+     margin-bottom: 1rem;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.league-head div:nth-child(1) {
+     display: flex;
+     margin-bottom: 0.6rem;
+}
+
+.league-head img {
+     width: 35px;
+     margin-left: 0.6rem;
+     height: 35px;
+}
+
+.league-head p {
+     font-size: 1.2rem;
+     font-weight: 600;
+}
+
+.fixture-card {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     padding: 0.75rem 0.4rem;
+     align-items: center; 
+     margin-bottom: 1.2rem;
+     width: 100%;
+     background-color: #eeeeee;
+     border-radius: 0.7rem;
+}
+
+.fixture-home {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     width: 33.33333%;
+}
+
+.fixture-home img {
+     width: 1.9rem;
+}
+
+.fixture-away img {
+     width: 1.9rem;
+}
+
+.fixture-away {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     width: 33.33333%;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
+.fixture-teams-results {
+     width: 33.33333%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+.paused-grey {
+     font-size: 0.65rem;
+     font-weight: 700;
+     background-color: #b7b7b7;
+     border-radius: 5px;
+     padding: 4px;
+}
+
+.now-green {
+     font-size: 0.65rem;
+     font-weight: 700;
+     background-color: #3b83ff;
+     border-radius: 5px;
+     padding: 4px;
+}
+
+.finished-grey {
+     font-size: 0.65rem;
+     font-weight: 700;
+     background-color: #b7b7b7;
+     border-radius: 5px;
+     padding: 4px;
+}
+
+.fixture-result {
+     font-size: 1.2rem;
+     font-weight: 800;
+}
+
+.line {
+     width: 100%;
+     height: 1px;
+     background-color: #d5d5d5;
+     border-radius: 100%;
+}
+
+.note {
+     text-align: center;
+}
+
+.fixture-time {
+     font-weight: 600;
+}
+
+.share-link {
+     font-size: 1rem;
+     font-weight: 600;
+}
+
+.share-links {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.share-links > div {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 0 0.75rem;
+}
+
+.share-links > div > img {
+     margin-right: 0.3rem;
+}
+
+.blob {
+	background: rgb(232, 20, 20);
+	border-radius: 50%;
+	margin: 10px;
+	height: 17px;
+	width: 17px;
+	box-shadow: 0 0 0 0 rgb(255, 62, 62);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+.fixture-round {
+     font-size: 14px;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+
+.no-matches {
+     text-align: center;
+     margin: 20px 0 0 0;
+     font-weight: 600;
+}
+
+@media only screen and (max-width: 476px) {
+     
+     .head-title a {
+          font-size: 0.43rem;
+          width: 33.333%;
+     }
+
+}
+
+@media only screen and (max-width: 366px) {
+     
+     .fixture-away {
+          font-size: 0.8rem;
+     }
+     
+     .fixture-home {
+          font-size: 0.8rem;
+     }
+
+     .fixture-time {
+          font-size: 0.75rem;
+     }
+
+     .finished-grey {
+          font-size: 0.75rem;
+     }
+
+     .now-green {
+          font-size: 0.75rem;
+     }
+
+     .paused-grey {
+          font-size: 0.75rem;
+     }
+
+     .fixtures {
+          padding: 0 0 .5rem 0;
+     }
+
+}
+

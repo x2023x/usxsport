@@ -1,0 +1,218 @@
+@import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&subset=latin-ext';
+ *, *::before, *::after {
+	 box-sizing: border-box;
+	 margin: 0;
+	 padding: 0;
+}
+ html {
+	 font-size: 15px;
+}
+ @media (min-width: 38em) {
+	 html {
+		 font-size: 14px;
+	}
+}
+ @media (min-width: 52em) {
+	 html {
+		 font-size: 15px;
+	}
+}
+ @media (min-width: 72em) {
+	 html {
+		 font-size: 16px;
+	}
+}
+ body {
+     background-color: #ECEEF2;
+}
+
+.group-stage-con {
+	width: 100%;
+	padding: 0 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.groups {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 1rem;
+}
+
+.groups-head {
+     width: 95%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+	background-image: url("/images/ucl-banner.png");
+	height: 48px;
+	background-position: center;
+	box-shadow: rgba(0, 0, 0, 0.5) 0px 18px 50px -15px;
+	background-attachment: fixed;
+	border-radius: 30px 30px 0 0;
+}
+
+.groups-head h3 {
+	color: #fff;
+	text-shadow: 2px 2px 16px #000;
+	font-size: 22px;
+}
+
+.group {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0 2rem 0;
+}
+
+.group .group-header {
+	width: 100%;
+	padding: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.group .group-header h3 {
+	text-align: center;
+	font-size: 22px;
+}
+
+.group-body {
+	width: 100%;
+}
+
+.group-body table {
+	box-shadow: rgba(17, 12, 46, 0.04) 0px 10px 15px 0px;
+	width: 100%;
+	border-spacing: 0;
+	border-radius: 10px;
+	background-color: #fff;
+	padding: 0.5rem 0 0.75rem 0;
+}
+
+.group-body table thead tr td{
+	font-size: 1rem;
+	z-index: 1;
+	font-weight: 600;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.group-body table tbody td {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.group-body table tbody tr:hover {
+	background-color: rgba(226, 226, 226, 0.5);
+}
+
+.group-body table thead tr td {
+	padding: 6px;
+	text-align: center;
+}
+
+.group-body table tbody tr td {
+	padding: 6px;
+	color: rgb(22, 22, 22);
+	text-align: center;
+}
+
+.group-body table thead tr td:first-child {
+	padding-left: 15px;
+}
+
+.group-body table tbody tr td:first-child {
+	padding-left: 15px;
+}
+
+.group-body table tbody tr:last-child td {
+	border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+.group-body table tbody .team-logo {
+	width: 26px;
+	height: 26px;
+	max-width: 26px;
+	max-height: 26px;
+	aspect-ratio: 1/1;
+	object-fit: contain;
+	margin-right: 5px;
+}
+
+#team-name {
+	display: flex;
+	align-items: center;
+}
+
+#qualified-state {
+	border-left: 2px solid #0029FF;
+}
+
+.info-note {
+	align-self: flex-start;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0 0.5rem;
+}
+
+.info-note div {
+	width: 20px;
+	height: 20px;
+	background-color: #0029FF;
+	border-radius: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+	
+.groups {
+	grid-template-columns: auto;
+	width: 100%;
+}
+
+}
+
+@media only screen and (max-width: 510px) {
+
+	.group-body table thead tr td:nth-child(5) {
+		display: none;
+	}
+	
+	.group-body table tbody tr td:nth-child(5) {
+		display: none;
+	}
+	
+}
+
+@media only screen and (max-width: 400px) {
+
+	.group-body table thead tr td:nth-child(4) {
+		display: none;
+	}
+	
+	.group-body table tbody tr td:nth-child(4) {
+		display: none;
+	}
+
+	.group-body table thead tr td:nth-child(6) {
+		display: none;
+	}
+	
+	.group-body table tbody tr td:nth-child(6) {
+		display: none;
+	}
+	
+}
+
+@media only screen and (max-width: 450px) {
+
+	.group-body table thead tr td {
+		font-size: 0.85rem;
+	}
+	
+	.group-body table tbody tr td {
+		font-size: 0.85rem;
+	}
+	
+}

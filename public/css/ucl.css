@@ -1,0 +1,577 @@
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+body {
+     background-color: #ECEEF2;
+}
+
+html {
+     font-size: 15px;
+}
+@media (min-width: 38em) {
+     html {
+          font-size: 14px;
+    }
+}
+@media (min-width: 52em) {
+     html {
+          font-size: 15px;
+    }
+}
+@media (min-width: 72em) {
+     html {
+          font-size: 16px;
+    }
+}
+
+.header {
+     background-image: url("/images/ucl-banner.png");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     background-attachment: fixed;
+     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.header div {
+     display: flex;
+     flex-direction: column;
+}
+
+.header div h1 {
+     font-size: 1.1rem;
+}
+
+.header div ul {
+     list-style: none;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+}
+
+.header div ul li {
+     cursor: pointer;
+     padding: 0.2rem;
+}
+
+.header div ul li:hover {
+     background-color: rgba(0, 0, 255, 0.182);
+}
+
+#fixtures {
+     width: 60%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+.next-fixtures {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     display: flex;
+     padding: 1.5rem;
+     justify-content: center;
+     width: 100%;
+     align-items: center;
+}
+
+.head-next-fixtures {
+     display: flex;
+     margin-top: 0.8rem;
+     justify-content: center;
+     width: 100%;
+}
+
+.head-last-fixtures {
+     display: flex;
+     margin-top: 0.8rem;
+     justify-content: center;
+     width: 100%;
+}
+
+.head-next-fixtures h2 {
+     font-size: 1.3rem;
+     font-weight: 600;
+}
+
+.head-last-fixtures h2 {
+     font-size: 1.3rem;
+     font-weight: 600;
+}
+
+.last-fixtures {
+     padding: 1.5rem;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     display: flex;
+     justify-content: center;
+     width: 100%;
+     align-items: center;
+}
+
+.fixtures-body {
+     display: flex;
+     max-width: 680px;
+     flex-direction: column;
+     width: 100%;
+     justify-content: center;
+     align-items: center;
+}
+
+.fixture-card {
+     display: flex;
+     width: 100%;
+     flex-direction: column;
+     background-color: rgb(255, 255, 255);
+     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+     margin-bottom: 0.75rem;
+}
+
+.fixture-details {
+     display: flex;
+     width: 100%;
+     flex-direction: row-reverse;
+     align-items: center;
+     font-size: 0.85rem;
+     font-weight: 600;
+     padding: 0.3rem 0.4rem;
+     justify-content: space-between;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.fixture-sub-card {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 0.5rem 0;
+}
+
+.fixture-result {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.fixture-home {
+     display: flex;
+     text-overflow: ellipsis;
+}
+
+.fixture-home p {
+     font-size: 14px;
+}
+
+.fixture-away p {
+     font-size: 14px;
+}
+
+.fixture-away {
+     display: flex;
+     text-overflow: ellipsis;
+}
+
+.fixture-home img {
+     width: auto;
+     margin: 0 0 0 0.4rem;
+     max-width: 24px;
+     max-height: 24px;
+}
+
+.fixture-away img {
+     width: auto;
+     margin: 0 0.4rem 0 0;
+     max-width: 24px;
+     max-height: 24px;
+}
+
+.fixture-result {
+     margin: 0 0.65rem;
+}
+
+.fixture-time {
+     font-weight: 600;
+     margin: 0 0.7rem;
+}
+
+.final-fixture {
+     background-image: url("/images/ucl-banner.png");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+     color: #fff;
+}
+
+.show-btn {
+     width: 100%;
+     max-width: 680px;
+     background-color: none;
+     height: 30px;
+     padding: 0.5rem;
+     border: none;
+     cursor: pointer;
+     text-align: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.show-less-button-scorers {
+     max-width: 62rem;
+}
+
+.show-more-button-scorers {
+     max-width: 62rem;
+}
+
+.show-less-button-assists {
+     max-width: 62rem;
+}
+
+.show-more-button-assists {
+     max-width: 62rem;
+}
+
+.show-less-button-penalities {
+     max-width: 62rem;
+}
+
+.show-more-button-penalities {
+     max-width: 62rem;
+}
+
+.show-less-button-redCards {
+     max-width: 62rem;
+}
+
+.show-more-button-redCards {
+     max-width: 62rem;
+}
+
+.show-less-button-yellowCards {
+     max-width: 62rem;
+}
+
+.show-more-button-yellowCards {
+     max-width: 62rem;
+}
+
+.show-less-button-cleanSheets {
+     max-width: 62rem;
+}
+
+.show-more-button-cleanSheets {
+     max-width: 62rem;
+}
+
+.show-less-button-penalitySave {
+     max-width: 62rem;
+}
+
+.show-more-button-penalitySave {
+     max-width: 62rem;
+}
+
+.show-btn:hover {
+     background-color: #e5e5e5;
+}
+
+.show-btn:hover {
+     background-color: #e5e5e5;
+}
+
+.ucl-container {
+     width: 100%;
+     justify-content: space-between;
+     display: flex;
+}
+
+.ucl-detailes {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
+.sub-navbar a {
+     text-decoration: none;
+     color: #fff;
+}
+
+.stats {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+}
+
+.ul__stats {
+     display: flex;
+     width: 100%;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+.ul__stats li {
+     width: 100%;
+     max-width: 1000px;
+     display: flex;
+     background-color: #fff;
+     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+     flex-direction: row;
+     margin-bottom: 0.8rem;
+     justify-content: space-between;
+     padding: 0.375rem 0.65rem;
+     align-items: center;
+}
+
+.ul__stats li:nth-child(1) > div:nth-child(1) > div > img {
+     max-width: 70px;
+     max-height: 70px;
+}
+
+.ul__stats li div:nth-child(1) {
+     display: flex;
+}
+
+.ul__stats li div:nth-child(1) div:nth-child(1) {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-left: 0.85em;
+}
+
+.ul__stats li div:nth-child(2) {
+     display: flex;
+     line-height: 20px;
+}
+
+.ul__stats li div:nth-child(2) p {
+     font-weight: 600;
+}
+
+.ul__stats li .player-details {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+}
+
+.ul__stats li .player-details p:nth-child(1) {
+     font-size: 16px;
+     font-weight: 700;
+}
+
+.ul__stats li .player-details p:nth-child(2) {
+     font-size: 12px;
+     font-weight: 500;
+}
+
+.ul__stats li div:nth-child(1) > div > img {
+     width: auto;
+     border: 1px solid rgba(0, 0, 0, 0.3);
+     max-width: 40px;
+     border-radius: 50%;
+     z-index: 100;
+     max-height: 40px;
+}
+
+.ul__stats__head {
+     margin: 1rem 0 1rem 0;
+}
+
+.ul__stats__head h2 {
+     font-size: 1.3rem;
+     font-weight: 600;
+}
+
+.download-img-btn {
+     width: 5rem;
+     height: 2.0rem;
+     cursor: pointer;
+     background-color: #fff;
+     border: 1px #d7d7d7 solid;
+     font-weight: 600;
+     border-radius: 0.3rem;
+     color: #464646;
+}
+
+.download-img-btn:hover {
+     border: 1px #9d9d9d solid;
+     color: #000000;
+}
+
+.follow-section {
+     background-image: url("/images/ucl-stars.jpg");
+     width: 100%;
+     background-size: cover;
+     background-color: #ECEEF2;
+     border-radius: 15px;
+     display: flex;
+     flex-direction: column;
+     padding-top: 25px 0;
+     justify-content: center;
+     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+     border: 1px solid rgba(0, 0, 0, 0.3);
+     align-items: center;
+     max-width: 400px;
+     background-position: center;
+     height: 100px;
+}
+
+.follow-section:hover {
+     filter: brightness(1.1);
+     cursor: pointer;
+}
+
+.follow-section p {
+     color: #fff;
+     font-size: 16px;
+     font-weight: 600;
+}
+
+.follow-section .share-links img {
+     width: 30px;
+     max-width: 30px;
+     height: 30px;
+     box-shadow: rgba(50, 50, 93, 0.9) 0px 50px 100px -20px, rgba(0, 0, 0, 0.9) 0px 30px 60px -30px;
+     aspect-ratio: 1/1;
+     object-fit: contain;
+     max-height: 30px;
+}
+
+.sub-con-2 {
+     display: flex;
+     flex-direction: column;
+     width: 40%;
+     padding: 1rem;
+     align-items: center;
+}
+
+.tournament-soccer {
+     width: 100%;
+     background-color: #fff;
+     padding: 1rem;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 15px;
+     box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 12px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.soccer-details {
+     text-align: center;
+     width: 50%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     font-weight: 600;
+}
+
+.soccer-details > div {
+     position: relative;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     text-align: center;
+}
+
+.soccer-card {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.soccer-details > div > img {
+     width: 100px;
+     align-self: center;
+}
+
+.soccer-details > div > p {
+     position: absolute;
+     bottom: 0px;
+     background-color: #5478ed;
+     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+     color: #fff;
+     padding: 0px 5px;
+     width: 60px;
+     font-size: 12px;
+     border-radius: 6px;
+}
+
+.stats-main {
+     display: flex;
+     width: 100%;
+     gap: 0 10px;
+     text-align: center;
+}
+
+.tournament-soccer > div > h4 {
+     font-size: 14px;
+}
+
+@media only screen and (max-width: 1076px) {
+     
+     .soccer-details > div > img {
+          width: 80px;
+     }
+
+     .soccer-details > div > p {
+          font-size: 12px;
+          padding: 0 5px;
+          right: -27px;
+          width: fit-content;
+     }
+     
+     }
+
+@media only screen and (min-width: 400px) {
+     
+.header div h1 {
+     font-size: 1.6rem;
+}
+
+}
+
+@media only screen and (max-width: 784px) {
+     
+.ucl-container {
+     flex-direction: column;
+}
+
+#fixtures {
+     width: 100%;
+}
+
+.ucl-detailes {
+     width: 100%;
+}
+
+.sub-con-2 {
+     width: 100%;
+}
+
+}
+
+@media only screen and (max-width: 400px) {
+     
+.header div ul {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr) ) ;
+}
+
+}
