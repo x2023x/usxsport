@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+     <link rel="stylesheet" href="/./css/ucl.css">
+     <link rel="stylesheet" href="/./css/ucl.brackets.css">
+     <%- include('../partials/head.ejs') %>
+<body>
+     <%- include('../partials/navbar.ejs') %>
+
+     <div class="header" dir="rtl">
+          <div>
+               <h1>دوري ابطال اوروبا - مباريات ونتائج</h1>
+               <ul class="sub-navbar">
+                    <a href="/ucl"><li class="item1">نتائج</li></a>
+                    <a href="/ucl/stats"><li class="item2">احصائيات</li></a>
+                    <a href="/ucl/groups"><li class="item3">المجموعات</li></a>
+                    <a href="/ucl/brackets"><li class="item4">الادوار الاقصائية</li></a>
+               </ul>
+          </div>
+     </div class="header">
+     <div class="ucl-container">
+          <% if(brackets == undefined || error) { %>
+            <div class="error-message-con">
+              <p class="error-message"><%= error %></p>
+         </div>
+          <% } else { %>
+          <div class="container">
+               <h1>دوري ابطال اوروبا</h1>
+               <h2>مرحلة الاقصائيات</h2>
+               <br>
+               <div class="tournament-bracket tournament-bracket--rounded">                                                     
+                 <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                   <h3 class="tournament-bracket__round-title">دور ال16</h3>
+                   <ul class="tournament-bracket__list">
+                    <% const round16Fixtures = []; %>
+                    <% let round16Fixtures1 = brackets.matches.filter(fixture => fixture.stage == "LAST_16").reverse().sort().splice(-8); %>
+                    <% let round16Fixtures2 = brackets.matches.filter(fixture => fixture.stage == "LAST_16").sort().splice(8); %>
+                    <% round16Fixtures1.forEach((fixture1) => { %>
+                      <% const matchingFixtures2 = round16Fixtures2.find((fixture2) => { %>
+                        <% return fixture1.homeTeam.shortName === fixture2.awayTeam.shortName && fixture1.awayTeam.shortName === fixture2.homeTeam.shortName %>
+                      <% }); %>
+                      <% if(matchingFixtures2) { %>
+                        <% round16Fixtures.push({ 
+                          homeTeam: fixture1.homeTeam.shortName, 
+                          awayTeam: fixture1.awayTeam.shortName, 
+                          homeScore: (fixture1.score.fullTime.home + matchingFixtures2.score.fullTime.away), 
+                          awayScore: matchingFixtures2.score.fullTime.home + fixture1.score.fullTime.away, 
+                          homeCrest: fixture1.homeTeam.crest, 
+                          awayCrest: fixture1.awayTeam.crest,
+                          nextMatch: null,
+                          date: fixture1.utcDate,
+                          status: matchingFixtures2.status
+                        }) %>
+                      <% } %>
+                    <% }) %>
+                    <% round16Fixtures.forEach(fixture => { %>
+                     <li class="tournament-bracket__item">
+                       <div class="tournament-bracket__match" tabindex="0">
+                         <table class="tournament-bracket__table">
+                           <caption class="tournament-bracket__caption">
+                            <% if(fixture.status == "FINISHED") { %>
+                              FT
+                              <% } else { %>
+                                <time><%= moment(fixture.date).utc().utcOffset("+03:00").format("YYYY-MM-DD hh:mm a") %></time>
+                              <% } %>
+                           </caption>
+                           <thead class="sr-only">
+                             <tr>
+                               <th>Country</th>
+                               <th>Score</th>
+                             </tr>
+                           </thead>  
+                           <tbody class="tournament-bracket__content">
+                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                               <td class="tournament-bracket__country tournament-bracket__country-home">
+                                 <abbr class="tournament-bracket__code" title="home"><% if(fixture.homeTeam) { %> <%= fixture.homeTeam %> <% } else { %>TBD<% } %></abbr>
+                                 <img src="<% if(fixture.homeCrest) { %> <%= fixture.homeCrest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                               </td>
+                               <td class="tournament-bracket__score">
+                                 <span class="tournament-bracket__number"><%= fixture.homeScore %></span>
+                               </td>
+                             </tr>
+                             <tr class="tournament-bracket__team">
+                               <td class="tournament-bracket__country tournament-bracket__country-away">
+                                 <abbr class="tournament-bracket__code" title="away"><% if(fixture.awayTeam) { %> <%= fixture.awayTeam %> <% } else { %>TBD<% } %></abbr>
+                                 <img src="<% if(fixture.awayCrest) { %> <%= fixture.awayCrest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                               </td>
+                               <td class="tournament-bracket__score">
+                                 <span class="tournament-bracket__number"><%= fixture.awayScore %></span>
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </li>
+                    <% }) %>
+                   </ul>
+                 </div>
+                 <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                   <h3 class="tournament-bracket__round-title">ربع النهائي</h3>
+                   <ul class="tournament-bracket__list">
+                        <% const quarterFinalFixtures = [];%>
+                          <% let quarterFinalFixtures1 = brackets.matches.filter(fixture => fixture.stage == "QUARTER_FINALS").reverse().sort().splice(-4);%>
+                          <% let quarterFinalFixtures2 = brackets.matches.filter(fixture => fixture.stage == "QUARTER_FINALS").sort().splice(4);%>
+
+                          <% quarterFinalFixtures1.forEach((fixture1, index) => { %>
+                            <% const matchingFixtures2 = quarterFinalFixtures2.find((fixture2) => { %>
+                              <% return fixture1.homeTeam.shortName === fixture2.awayTeam.shortName && fixture1.awayTeam.shortName === fixture2.homeTeam.shortName %>
+                            <% }) %>
+                            <% if (matchingFixtures2) { %>
+                              <% const previousMatches = [round16Fixtures[index * 2], round16Fixtures[index * 2 + 1]]; %>
+                              <% quarterFinalFixtures.push({
+                                homeTeam: fixture1.homeTeam.shortName,
+                                awayTeam: fixture1.awayTeam.shortName,
+                                homeScore: (fixture1.score.fullTime.home + matchingFixtures2.score.fullTime.away),
+                                awayScore: (matchingFixtures2.score.fullTime.home + fixture1.score.fullTime.away),
+                                homeCrest: fixture1.homeTeam.crest,
+                                awayCrest: fixture1.awayTeam.crest,
+                                previousMatches: previousMatches,
+                                nextMatch: null,
+                                date: fixture1.utcDate,
+                                status: matchingFixtures2.status
+                              }) %>
+
+                              <% previousMatches.forEach((match) => { %>
+                                <% match.nextMatch = { teams: [fixture1.homeTeam.shortName, fixture1.awayTeam.shortName], score: { home: fixture1.score.fullTime.home, away: fixture1.score.fullTime.away } } %>
+                              <% }); %>
+                            <% } %>
+                          <% }); %>
+                                <% quarterFinalFixtures.forEach(fixture => { %>
+                                  <li class="tournament-bracket__item">
+                                    <div class="tournament-bracket__match" tabindex="0">
+                                      <table class="tournament-bracket__table">
+                                        <caption class="tournament-bracket__caption">
+                                          <% if(fixture.status == "FINISHED") { %>
+                                            FT
+                                            <% } else { %>
+                                              <time><%= moment(fixture.date).utc().utcOffset("+03:00").format("YYYY-MM-DD hh:mm a") %></time>
+                                            <% } %>
+                                        </caption>
+                                        <thead class="sr-only">
+                                          <tr>
+                                            <th>Country</th>
+                                            <th>Score</th>
+                                          </tr>
+                                        </thead>  
+                                        <tbody class="tournament-bracket__content">
+                                          <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                                            <td class="tournament-bracket__country">
+                                              <abbr class="tournament-bracket__code" title="home"><% if(fixture.homeTeam) { %> <%= fixture.homeTeam %> <% } else { %>TBD<% } %></abbr>
+                                              <img src="<% if(fixture.homeCrest) { %> <%= fixture.homeCrest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                                            </td>
+                                            <td class="tournament-bracket__score">
+                                              <span class="tournament-bracket__number"><%= fixture.homeScore %></span>
+                                            </td>
+                                          </tr>
+                                          <tr class="tournament-bracket__team">
+                                            <td class="tournament-bracket__country">
+                                              <abbr class="tournament-bracket__code" title="away"><% if(fixture.awayTeam) { %> <%= fixture.awayTeam %> <% } else { %>TBD<% } %></abbr>
+                                              <img src="<% if(fixture.awayCrest) { %> <%= fixture.awayCrest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                                            </td>
+                                            <td class="tournament-bracket__score">
+                                              <span class="tournament-bracket__number"><%= fixture.awayScore %></span>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </li>
+                     <% }) %>
+                   </ul>
+                 </div>
+
+                 <div class="tournament-bracket__round tournament-bracket__round--bronze">
+                   <h3 class="tournament-bracket__round-title">نصف النهائي</h3>
+                   <ul class="tournament-bracket__list">
+                    
+
+                 <% const semiFinalFixtures = [];%>
+                 <% let semiFinalFixtures1 = brackets.matches.filter(fixture => fixture.stage == "SEMI_FINALS").reverse().sort().splice(-2);%>
+                 <% let semiFinalFixtures2 = brackets.matches.filter(fixture => fixture.stage == "SEMI_FINALS").sort().splice(2);%>
+
+                 <% semiFinalFixtures1.forEach((fixture1, index) => { %>
+                   <% const matchingFixtures2 = semiFinalFixtures2.find((fixture2) => { %>
+                     <% return fixture1.homeTeam.shortName === fixture2.awayTeam.shortName && fixture1.awayTeam.shortName === fixture2.homeTeam.shortName %>
+                   <% }) %>
+                   <% if (matchingFixtures2) { %>
+                     <% const previousMatches = [round16Fixtures[index * 2], round16Fixtures[index * 2 + 1]]; %>
+                     <% semiFinalFixtures.push({
+                       homeTeam: fixture1.homeTeam.shortName,
+                       awayTeam: fixture1.awayTeam.shortName,
+                       homeScore: (fixture1.score.fullTime.home + matchingFixtures2.score.fullTime.away),
+                       awayScore: (matchingFixtures2.score.fullTime.home + fixture1.score.fullTime.away),
+                       homeCrest: fixture1.homeTeam.crest,
+                       awayCrest: fixture1.awayTeam.crest,
+                       previousMatches: previousMatches,
+                       nextMatch: null,
+                       date: fixture1.utcDate,
+                       status: fixture1.status
+                     }) %>
+
+                     <% previousMatches.forEach((match) => { %>
+                       <% match.nextMatch = { teams: [fixture1.homeTeam.shortName, fixture1.awayTeam.shortName], score: { home: fixture1.score.fullTime.home, away: fixture1.score.fullTime.away } } %>
+                     <% }); %>
+                   <% } %>
+                 <% }); %>
+                       <% semiFinalFixtures.forEach(fixture => { %>
+                        <li class="tournament-bracket__item">
+                          <div class="tournament-bracket__match" tabindex="0">
+                            <table class="tournament-bracket__table">
+                              <caption class="tournament-bracket__caption">
+                                <% if(fixture.status == "FINISHED") { %>
+                                  FT
+                                  <% } else { %>
+                                    <time><%= moment(fixture.date).utc().utcOffset("+03:00").format("YYYY-MM-DD hh:mm a") %></time>
+                                  <% } %>
+                              </caption>
+                              <thead class="sr-only">
+                                <tr>
+                                  <th>Country</th>
+                                  <th>Score</th>
+                                </tr>
+                              </thead>  
+                              <tbody class="tournament-bracket__content">
+                                <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                                  <td class="tournament-bracket__country">
+                                    <abbr class="tournament-bracket__code" title="Canada"><%= fixture.homeTeam %></abbr>
+                                    <img src="<% if(fixture.homeCrest) { %> <%= fixture.homeCrest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                                  </td>
+                                  <td class="tournament-bracket__score">
+                                    <span class="tournament-bracket__number">
+                                      <%= fixture.homeScore %>
+                                    </span>
+                                  </td>
+                                </tr>
+                                <tr class="tournament-bracket__team">
+                                  <td class="tournament-bracket__country">
+                                    <abbr class="tournament-bracket__code" title="Kazakhstan"><%= fixture.awayTeam %></abbr>
+                                    <img src="<% if(fixture.awayCrest) { %> <%= fixture.awayCrest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                                  </td>
+                                  <td class="tournament-bracket__score">
+                                    <span class="tournament-bracket__number"><%= fixture.awayScore %></span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </li>
+                     <% }) %>
+                   </ul>
+                 </div>
+
+                 <% let finalFixture = brackets.matches.filter(fixture => fixture.stage == "FINAL")[0]; %>
+                 <div class="tournament-bracket__round tournament-bracket__round--gold">
+                   <h3 class="tournament-bracket__round-title">النهائي</h3>
+                   <ul class="tournament-bracket__list">
+                     <li class="tournament-bracket__item">
+                       <div class="tournament-bracket__match final-fixture" tabindex="0">
+                         <table class="tournament-bracket__table">
+                           <caption class="tournament-bracket__caption">
+                            <% if(finalFixture.status == "FINISHED") { %>
+                              FT
+                              <% } else { %>
+                                <time><%= moment(finalFixture.utcDate).utc().utcOffset("+03:00").format("YYYY-MM-DD hh:mm a") %></time>
+                              <% } %>
+                           </caption>
+                           <thead class="sr-only">
+                             <tr>
+                               <th>Country</th>
+                               <th>Score</th>
+                             </tr>
+                           </thead>  
+                           <tbody class="tournament-bracket__content">
+                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                               <td class="tournament-bracket__country">
+                                 <abbr class="tournament-bracket__code"><% if(finalFixture.homeTeam.shortName) { %> <%= finalFixture.homeTeam.shortName %> <% } else { %> TBD <% } %></abbr>
+                                 <span class="tournament-bracket__flag flag-icon flag-icon-cz" aria-label="Flag">
+                                  <img src="<% if(finalFixture.homeTeam.crest) { %> <%= finalFixture.homeTeam.crest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                                 </span>
+                               </td>
+                               <td class="tournament-bracket__score">
+                                 <span class="tournament-bracket__number finalMatch-result"><% if(finalFixture.score.fullTime.home != null) { %> <%= finalFixture.score.fullTime.home %> <% } else { %><% } %></span>
+                               </td>
+                             </tr>
+                             <tr class="tournament-bracket__team">
+                               <td class="tournament-bracket__country">
+                                 <abbr class="tournament-bracket__code"><% if(finalFixture.awayTeam.shortName) { %> <%= finalFixture.awayTeam.shortName %> <% } else { %> TBD <% } %></abbr>
+                                 <span class="tournament-bracket__flag flag-icon flag-icon-ru" aria-label="Flag">
+                                  <img src="<% if(finalFixture.awayTeam.crest) { %> <%= finalFixture.awayTeam.crest %> <% } else { %>https://www.gstatic.com/onebox/sports/logos/crest_48dp.png<% } %>" class="tournament-bracket__flag flag-icon flag-icon-ca" aria-label="Flag">
+                                 </span>
+                               </td>
+                               <td class="tournament-bracket__score">
+                                <span class="tournament-bracket__number finalMatch-result"><% if(finalFixture.score.fullTime.away != null) { %> <%= finalFixture.score.fullTime.away %><% } else { %><% } %></span>
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </li>
+                   </ul>
+                 </div>
+               </div>
+             </div>
+            <% } %>
+     </div>
+          
+     <script src="/index.js"></script>
+     <script src="/uclBrackets.js"></script>
+</body>
+</html>
