@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
      <head>
+     <link rel="icon" href="/images/icon.PNG">
           <meta charset="UTF-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
           <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
           <script src="https://kit.fontawesome.com/2c1b23ff4c.js" crossorigin="anonymous"></script>
-          <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
+	          <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
      </head>
 <body>
 
@@ -81,7 +82,7 @@
 
         /* CSS styles for the football content section */
         #football-content {
-            padding: 50px;
+            padding: 10px;
         }
 
         .football-images {
@@ -111,28 +112,106 @@
             text-align: center;
             padding: 20px;
         }
+      
+
+@-webkit-keyframes logo-scroll {
+	0% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+
+	100% {
+		-webkit-transform: translateX(calc(-250px * 7));
+		transform: translateX(calc(-250px * 7));
+	}
+}
+
+@keyframes logo-scroll {
+	0% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+
+	100% {
+		-webkit-transform: translateX(calc(-250px * 7));
+		transform: translateX(calc(-250px * 7));
+	}
+}
+
     </style>
 </head>
 <body>
     <main  style="width: 100vw;">
 
      <div class="slider responsive" width='450' height='251'>
-          <div src="/images/slide1.jpg"></div>
-          <div src="/images/slide2.jpg"></div>
-          <div src="/images/slide3.jpg"></div>
+          <div src="https://ucarecdn.com/97ddaff6-9a7f-403f-8d16-439933c3de1d/0305D895DD8D4057991DDBCB15D810EE.jpeg"></div>
+          <div src="https://ucarecdn.com/89e616c5-6cbf-4906-910c-8c1e96b63fbc/BB4DEC781A7A4AD3AD0E679ED592B15F.jpeg"></div>
+          <div src="https://ucarecdn.com/995484c1-af27-46c2-9672-8cfa99cc868f/7711063B4E974F5C867D99F098C78BE5.jpeg"></div>
      </div>
 
      <section id="football-content"  style="width: 100%;">
             <h2>مباريات الدوريات الخمسة الكبرى</h1>
-            <p>Explore the latest news, matches, and updates from the football world.</p>
+            <p>اكتشف الكرة الاوروبية وتطوراتها لحظة بلحظة.</p>
             
             <div class="football-information">
                 <h2>تحديثات دورية</h2>
-                <p>نقدم لك تحليلات مفصلة تشمل أداء الفرق واللاعبين والإحصائيات المهمة، مما يساعدك على فهم أفضل لمجريات المباريات وتطورات الدوري.</p>
+                <p></p>
                 
                 <h2>احصائيات ونتائج مباشرة</h2>
-                <p>مباريات يوميا وترتيب الدوريات الخمسة الكبرى ودوري ابطال اوروبا مع احدث الاحصائيات</p>
+	                <p>احصائيات مفصلة تشمل اداء الفرق واللاعبين واحصائيات للبطولات الكبرى ودوري ابطال اوروبا</p>
             </div>
+            
+            <p style="
+            
+            text-align:center;
+            margin: 2.4rem 0 0 0;
+            font-size:1.24rem;
+            color: #333;
+            
+            ">شركائنا المميزين</p>
+            
+            <div style="
+            
+            
+            width: 100%;
+            margin: 0.4rem 0;
+            padding: 0.75rem;
+            text-align:center;
+            display:flex;
+            justify-content: center;
+            gap: 0 0.85rem;
+            align-items: center;
+            
+            
+            "class="logo-slider">
+                  <a href="https://t.me/magaott"><div class="slide-logo">
+                  <img width="60"
+                  
+                  style="
+                  
+                  border-radius: 50%;
+                  filter: grayscale(100%);
+                  
+                            "
+                  src="https://ucarecdn.com/074c316e-f657-41ad-9209-88f9cb43aebd/"/>
+                  </div>
+                  </a>
+                  <a href="https://t.me/swiftnexus"><div class="slide-logo">
+                  <img width="60"
+                  
+                  style="
+                  
+                  border-radius: 50%;
+                  filter: grayscale(100%);
+                  
+                            "
+                  src="https://ucarecdn.com/1a2b7f71-58e5-4bfc-896b-1f13628cba56/4F74F6DD0DB344F0B31551D717F5B574.png"/>
+                  </div>
+                  </a>
+            </div>
+            
+            
+            
         </section>
     </main>
     <div class="share-links">
@@ -165,15 +244,12 @@
 
         setInterval(changeSlide, 3000);
     </script>
+    
+    <style>
+   
+    </style>
 
-<div class="logo-slider">
-	<div class="logo-slide-track">
-		<div class="slide">
-			<img src="https://www.orangetechcollege.net/UserFiles/Servers/Server_86919/Image/Partners/4Rivers.png" alt="" />
-		</div>
-     </div>
-</div>
-     
+
 <script src="index.js"></script>
 <script src="navbar.js"></script>
 </body>
