@@ -32,7 +32,7 @@ channels: channels
       }
 })
 
-router.get("barca", ()=> {
+router.get("/barca", ()=> {
     res.render("./live/match.ejs")
 })
 
