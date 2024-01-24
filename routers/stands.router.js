@@ -18,7 +18,7 @@ async function getStanding(leagueCode) {
           const config = {
                method: 'get',
                maxBodyLength: Infinity,
-               url: `https://api.football-data.org/v3/competitions/${leagueCode}/standings`,
+               url: `https://api.football-data.org/v4/competitions/${leagueCode}/standings`,
                headers: { 
                  'Content-Type': 'application/json', 
                  'X-Auth-Token': 'a89d53abb2da4790bdc6cd3a5f27529a'
