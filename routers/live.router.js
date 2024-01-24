@@ -6,7 +6,6 @@ const mongoose = require("mongoose")
 const Channel = require("../models/Channels.model.js")
 
 
-
 router.get("/live", async (req,res)=>{
    console.log("hgggg")
     try {
@@ -14,7 +13,7 @@ router.get("/live", async (req,res)=>{
         if(connect){
             const channels = await Channel.find();
             if(channels){
-                res.render("./live/list", {
+                res.render("./live/list.ejs", {
 error: null,
 pageTitle: "بث مباريات",
 cssFile: "index.css",
