@@ -25,7 +25,7 @@ channels: channels
             console.error("could not connect")
         }
       } catch (error) {
-        res.render("list", {
+        res.render("./live/list", {
             error: "Failed to connect to DB \n حدث خطا اثناء الاتصال، حاول لاحقا",
             cssFile: "index.css",
             channels: null,
