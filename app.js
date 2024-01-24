@@ -5,14 +5,14 @@ const app = express();
 var moment = require('moment');
 moment().format();
 app.locals.moment = moment;
-
+const mongoose = require("mongoose")
 const cors = require("cors");
 const path = require("path");
 
 const standsRoute = require('./routers/stands.router.js');
 const matchsRoute = require('./routers/matchday.router.js');
 const uclRoute = require('./routers/ucl.router.js');
-const channelsRoute = require("./routers/live.router.js")
+const channelsRoute = require("./routers/live.router.js");
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -34,4 +34,4 @@ app.get('/', function(req, res) {
   });
 });
 
-app.listen(5000);
+app.listen(3000, ()=> console.log("listen on 3000"));
