@@ -14,7 +14,7 @@ router.get("/live", async (req,res)=>{
         if(connect){
             const channels = await Channel.find();
             if(channels){
-                res.render("list", {
+                res.render("./live/list", {
 error: null,
 pageTitle: "بث مباريات",
 cssFile: "index.css",
