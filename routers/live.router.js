@@ -8,7 +8,7 @@ const Channel = require("../models/Channels.model.js")
 
 
 router.get("/live", async (req,res)=>{
-
+   console.log("hgggg")
     try {
         const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
         if(connect){
@@ -21,6 +21,8 @@ cssFile: "index.css",
 channels: channels
                 })
             }
+        } else {
+            console.error("could not connect")
         }
       } catch (error) {
         res.render("list", {
