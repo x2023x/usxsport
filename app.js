@@ -8,12 +8,11 @@ app.locals.moment = moment;
 
 const cors = require("cors");
 const path = require("path");
-const { Telegraf, Telegram } = require("telegraf");
 
 const standsRoute = require('./routers/stands.router.js');
 const matchsRoute = require('./routers/matchday.router.js');
 const uclRoute = require('./routers/ucl.router.js');
-
+const channelsRoute = require("./routers/live.router.js")
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -24,10 +23,12 @@ app.use(cors());
 app.use(standsRoute)
 app.use(matchsRoute)
 app.use(uclRoute)
+app.use(channelsRoute)
 app.use('/ucl', proxy());
 app.use('/matchday', proxy());  
 
 app.get('/', function(req, res) {
+  
   res.render('index.ejs', {
     
   });

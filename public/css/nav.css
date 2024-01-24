@@ -4,13 +4,13 @@ nav {
      flex-direction: row;
      justify-content: space-around;
      align-items: center;
-     background-color: #000;
+     background-color: #e3e3e3;
      width: 100%;
      border-bottom: 3px solid #333;
 }
 
 nav div {
-     color: #e3e3e3;
+     color: #333;
      display: flex;
 }
 
@@ -57,7 +57,7 @@ nav ul .dropdown-leagues ul li a {
 }
 
 nav ul .dropdown-leagues ul li:hover {
-     background-color: #369457;
+     background-color: #999;
      cursor: pointer;
 }
 
