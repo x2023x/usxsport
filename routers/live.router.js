@@ -5,8 +5,7 @@ const router  = express.Router();
 const mongoose = require("mongoose")
 const Channel = require("../models/Channels.model.js")
 
-
-router.get("/live", async (req,res)=>{
+router.get('/live', async function (req,res){
    console.log("hgggg")
     try {
         const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
