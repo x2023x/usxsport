@@ -23,7 +23,7 @@ app.use(cors());
 app.use(standsRoute)
 app.use(matchsRoute)
 app.use(uclRoute)
-app.use(channelsRoute)
+app.use("/w",channelsRoute)
 app.use('/ucl', proxy());
 app.use('/matchday', proxy());  
 
