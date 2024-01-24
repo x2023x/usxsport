@@ -66,57 +66,17 @@
 
 <script src="script.js"></script>
     <style>
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
+
+
+
     </style>
 </head>
 <body>
     <main  style="width: 100vw;">
-
-
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<div class="container">
-    <h3>البث المباشر من هايزين</h3>
-    	<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">القنوات</h3>
-						<div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>
-						</div>
-					</div>
-					<div class="panel-body">
-						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="البحث عن قناة" />
-					</div>
-					<table class="table table-hover" id="dev-table">
-						<thead>
-              <a href="">
-							<tr>
-								<th>&nbsp;</th>
-								<th>القناة</th>
-								<th>الحالة</th>
-								<th>🌠</th>
-                                   </tr>
-                              </thead>
-    <tbody> 
-     <a href="">
-     <tr>
-          <th>برشلونة ضد اتلتيك بلباو</th>
-          <th>شغالة</th>
-          <th>🟢</th>
-     </tr>
-     </a>
-   </tbody>
-   </table>
+    
+    
+        <iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://onelineplayer.com/player.html?autoplay=false&autopause=true&muted=false&loop=false&url=https%3A%2F%2Fbee.fun%3A2083%2Fchannel-1-plus%2Ftracks-v1a1%2Fmono.m3u8&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true" style="height: 100%; width: 100%; aspect-ratio: 1280 / 720;"></iframe>
+    
     </main>
     <div class="share-links">
      <div>
@@ -130,6 +90,25 @@
     <footer style="position: fixed; width: 100%; bottom: 0; left: 0;">
         <p>© Heisen. جميع الحقوق محفوظة 2024</p>
     </footer>
+
+    <script>
+        // JavaScript code for the slider
+        const slider = document.querySelector("#slider");
+        const images = slider.getElementsByTagName("img");
+        let currentIndex = 0;
+
+        function changeSlide() {
+            for (let i = 0; i < images.length; i++) {
+                images[i].style.display = "none";
+            }
+
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.display = "block";
+        }
+
+        setInterval(changeSlide, 3000);
+    </script>
+     
      
 <script src="index.js"></script>
 <script src="navbar.js"></script>

@@ -32,4 +32,8 @@ channels: channels
       }
 })
 
+router.get("barca", ()=> {
+    res.render("./live/match.ejs")
+})
+
 module.exports = router;
