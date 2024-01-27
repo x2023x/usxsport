@@ -12,7 +12,7 @@
           <div class="container">
                     <div class="header">
                          <a href="#" class="download-league">
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX2yD10EZOO5pjI30a2jFurlsY-8vn7chBOQ&usqp=CAU" alt="premeir-logo">
+                              <img src="https://png2.cleanpng.com/dy/77ed2bc9ebd1740dfe8b2756fb092c6d/L0KzQYm3V8EyN6drgZH0aYP2gLBuTcIxOWc2T595cnXwebb5TfxmaZh6fZ9ubnfvecTvTfZwd6Vned51LXzocbj8hb1tNZ1uh9C2ZX3yerq0VfI1PmFrSKk7MkK3QIK1UcQ4P2k8Tac6NUO0Q4KBUMI0OWQAUZD5bne=/kisspng-201617-premier-league-english-football-league-l-lion-emoji-5b460f07222401.1477875515313180231399.png" alt="premeir-logo">
                          </a>
                                    <h2>
                                         <% if(seasonInfo.currentMatchday) { %>
@@ -58,7 +58,7 @@
                                                        ">
                                                             <%= team.position %>
                                                        </td>
-                                                       <td class="team-name"><img src="<%= team.team.crestUrl %>" width="24px"><%= team.team.shortName %></td>
+                                                       <td class="team-name"><img src="<%= team.team.crest %>" width="24px"><%= team.team.shortName %></td>
                                                        <td><%= team.playedGames %></td>
                                                        <td><%= team.goalsFor %>:<%= team.goalsAgainst %></td>
                                                        <td><%= team.won %></td>
@@ -141,7 +141,7 @@
      <br>
      <style>
           .header {
-               background-image: url("/images/serieA-cover.png");
+               background-image: url("/images/premier-league-cover.png");
           }
           
           .league-table table thead {
@@ -150,7 +150,6 @@
      
           .league-fixtures .fixtures-head {
                background: rgb(37,78,184);
-               background: linear-graient(90deg, rgba(37,78,184,1) 0%, rgba(120,165,243,1) 50%, rgba(0,75,175,1) 100%);
                }
      </style>
      <script src="index.js"></script>

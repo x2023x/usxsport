@@ -24,6 +24,7 @@ async function getStanding(leagueCode) {
                  'X-Auth-Token': 'a89d53abb2da4790bdc6cd3a5f27529a'
                }
              };
+             
            
             await axios(config)
              .then(async function (response)  {

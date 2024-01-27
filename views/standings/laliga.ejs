@@ -22,7 +22,7 @@
                                              
                                         <div>
                                              <% if(seasonInfo) { %>
-                                             <%= Math.round(seasonInfo.endDate.split("-")[0])-1 + `` %>/<%= seasonInfo.endDate.split("-")[0] + `` %>
+                                                  <%= Math.round(seasonInfo.endDate.split("-")[0])-1 + `` %>/<%= seasonInfo.endDate.split("-")[0] + `` %>
                                              <% } %>
                                         </div>
                                         <% } else { %>
@@ -62,30 +62,13 @@
                                                   ">
                                                        <%= team.position %>
                                                   </td>
-                                                  <td class="team-name"><img src="<%= team.team.crestUrl %>" width="24px"><%= team.team.shortName %></td>
+                                                  <td class="team-name"><img src="<%= team.team.crest %>" width="24px"><%= team.team.shortName %></td>
                                                   <td><%= team.playedGames %></td>
                                                   <td><%= team.goalsFor %>:<%= team.goalsAgainst %></td>
                                                   <td><%= team.won %></td>
                                                   <td><%= team.draw %></td>
                                                   <td><%= team.lost %></td>
                                                   <td><%= team.points %></td>
-                                                  <td id="team-form">
-                                                            <% let form = team.form; %>
-                                                            <% form = form.split(",") %>
-                                                            <% for(let i = 0; i < form.length; i++) { %>
-                                                            <div class="form-circle
-                                                            <% if(form[i] == "W") { %>
-                                                            form-green
-                                                                 <% } else if(form[i] == "L") { %>
-                                                            form-red
-                                                                      <% } else { %>
-                                                            form-grey
-                                                                           <% } %>
-                                                            ">
-                                                                 <%= form[i] %>
-                                                            </div>
-                                                       <% }  %>
-                                                  </td>
                                              </tr>
                                         <% }) %>
                                         <% } else { %>
@@ -167,12 +150,12 @@
      
      .league-table table thead {
           background: rgb(173,111,0);
-          background: linear-gradient(90deg, rgba(173,111,0,1) 0%, rgba(213,130,36,1) 50%, rgba(124,78,28,1) 100%);
+          background: linear(90deg, rgba(173,111,0,1) 0%, rgba(213,130,36,1) 50%, rgba(124,78,28,1) 100%);
      }
 
      .league-fixtures .fixtures-head {
           background: rgb(173,111,0);
-          background: linear-gradient(90deg, rgba(173,111,0,1) 0%, rgba(213,130,36,1) 50%, rgba(124,78,28,1) 100%);
+          background: linear(90deg, rgba(173,111,0,1) 0%, rgba(213,130,36,1) 50%, rgba(124,78,28,1) 100%);
           }
 </style>
 <script src="index.js"></script>
