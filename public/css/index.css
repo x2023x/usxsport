@@ -1,12 +1,14 @@
-@import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&subset=latin-ext';
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap');
  *, *::before, *::after {
 	 box-sizing: border-box;
 	 margin: 0;
-	 padding: 0;
+	 padding: 0; font-family: "Readex Pro" sans-serif;
 }
  html {
-	 font-size: 15px;
-}
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0; font-family: "Readex Pro" sans-serif;
+    font-family: 'Readex Pro', sans-serif;}
  @media (min-width: 38em) {
 	 html {
 		 font-size: 14px;
@@ -21,10 +23,6 @@
 	 html {
 		 font-size: 16px;
 	}
-}
- body {
-     background-color: #ECEEF2;
-     font-family: 'Cairo', sans-serif;  
 }
 
 .error-message {
@@ -47,7 +45,7 @@
 body {
 	background: #E6E6E6;
 	text-align: center;
-	font-family: Trebuchet MS, Helvetica, san-serif;
+	font-family: 'Readex Pro', sans-serif;
 	color: #666;
    }
    

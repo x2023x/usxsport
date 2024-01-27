@@ -7,8 +7,8 @@
           <link rel="stylesheet" href="/./css/index.css">
           <link rel="stylesheet" href="/./css/standings.css">
           <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com">
-          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
           <script src="/navbar.js" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,7 +18,7 @@
           <script src="https://cdnjs.cloudflare.com/ajax/libs/shards-ui/3.0.0/js/shards.min.js"></script>
           <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
      </head>
-<body>
+<body style="font-family: 'Readex Pro', sans-serif;">
 
      <header style="padding: 0 0.6rem;">
           <nav style="" class="navbar navbar-expand-lg navbar-light pt-4 px-0">
@@ -35,7 +35,7 @@
                      <a class="nav-link" href="/">🛖 الرئيسية<span class="sr-only">(current)</span></a>
                    </li>
                    <li class="nav-item">
-                     <a class="nav-link" href="#">⚽️ مباريات اليوم</a>
+                     <a class="nav-link" href="/matchday?<%= moment().format("YY-MM-DD")%>">⚽️ مباريات اليوم</a>
                    </li>
                    <li class="nav-item">
                     <a class="nav-link" href="/live">⭕️ البث المباشر</a>
