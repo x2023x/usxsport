@@ -32,6 +32,7 @@ async function getFixtures(date) {
           await axios.get(url, { headers: { "X-Auth-Token": "a89d53abb2da4790bdc6cd3a5f27529a" } })
           .then(async function(response) {
                fixtures = response.data.matches
+               console.log(fixtures)
                return fixtures
           });
 
