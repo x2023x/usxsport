@@ -1,0 +1,1 @@
+importScripts("https://cdn.mobsted.com/PWALessWorker.js");
