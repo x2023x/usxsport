@@ -3,7 +3,7 @@
           <%- include('../partials/head.ejs') %>
      <body>
           <%- include('../partials/navbar.ejs') %>
-     
+          
           <% if(error) { %>
                <div class="error-message-con">
                     <p class="error-message"><%= error %></p>
@@ -11,22 +11,23 @@
                <% } else { %>
           <div class="container">
                     <div class="header">
-                         <h2>
-                                      <a href="#" class="download-league">
-                                        
-                                           
-                                             الدوري الانكليزي / الجولة <%= seasonInfo.currentMatchday %>
+                         <a href="#" class="download-league">
+                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX2yD10EZOO5pjI30a2jFurlsY-8vn7chBOQ&usqp=CAU" alt="premeir-logo">
+                         </a>
+                                   <h2>
+                                        <% if(seasonInfo.currentMatchday) { %>
+                                        <div>
+                                             الدوري الانجليزي / الجولة <%= seasonInfo.currentMatchday %>
                                         </div>
                                              
                                         <div>
-                                       <%= Math.round(seasonInfo.endDate.split("-")[0])-1 + `` %>/<%= seasonInfo.endDate.split("-")[0] + `` %> 
+                                             <%= Math.round(seasonInfo.endDate.split("-")[0])-1 + `` %>/<%= seasonInfo.endDate.split("-")[0] + `` %>
                                         </div>
                                         <% } else { %>
                                              لا معلومات متوفرة
                                              <% } %>
                                    </h2>
                     </div>
-                    
                     <div class="sub-container">
                          <div class="league-table">
                          <table>
@@ -39,10 +40,9 @@
                                         <td>تعادل</td>
                                         <td>خسارة</td>
                                         <td>النقاط</td>
-                                        <td>اخر خمسة</td>
                                    </thead>
                                         <tbody>
-                                             <% if(standings && standings.length>0) { %>
+                                             <% if(standings) { %>
                                              <% standings.forEach(team => { %>
                                                   <tr>
                                                        <td class="
@@ -65,23 +65,6 @@
                                                        <td><%= team.draw %></td>
                                                        <td><%= team.lost %></td>
                                                        <td><%= team.points %></td>
-                                                       <td id="team-form">
-                                                                 <% let form = team.form; %>
-                                                                 <% form = form.split(",") %>
-                                                                 <% for(let i = 0; i < form.length; i++) { %>
-                                                                 <div class="form-circle
-                                                                 <% if(form[i] == "W") { %>
-                                                                 form-green
-                                                                      <% } else if(form[i] == "L") { %>
-                                                                 form-red
-                                                                           <% } else { %>
-                                                                 form-grey
-                                                                                <% } %>
-                                                                 ">
-                                                                      <%= form[i] %>
-                                                                 </div>
-                                                            <% }  %>
-                                                       </td>
                                                   </tr>
                                              <% }) %>
                                              <% } else { %>
@@ -158,17 +141,16 @@
      <br>
      <style>
           .header {
-               background-image: url("/images/premier-league-cover.png");
+               background-image: url("/images/serieA-cover.png");
           }
           
           .league-table table thead {
-               background: rgb(96,5,184);
-               background: linear-gradient(90deg, rgba(96,5,184,1) 0%, rgba(243,120,185,1) 50%, rgba(86,0,175,1) 100%);
+               background: rgb(37,78,184);
           }
      
           .league-fixtures .fixtures-head {
-               background: rgb(96,5,184);
-               background: linear-gradient(90deg, rgba(96,5,184,1) 0%, rgba(243,120,185,1) 50%, rgba(86,0,175,1) 100%);
+               background: rgb(37,78,184);
+               background: linear-graient(90deg, rgba(37,78,184,1) 0%, rgba(120,165,243,1) 50%, rgba(0,75,175,1) 100%);
                }
      </style>
      <script src="index.js"></script>

@@ -11,6 +11,7 @@ body {
 }
 
 .header {
+     background: url("https://wallpapercrafter.com/sizes/2560x1440/93555-breaking-bad-tv-shows-heisenberg-walter-white-hd-4k.jpg");
      display: flex;
      justify-content: center;
      align-items: center;
@@ -18,7 +19,7 @@ body {
      background-attachment: fixed;
      background-position: center;
      padding: 0.3rem;
-     color: white;
+     color: #333;
      margin-bottom: 0.856rem;
 }
 
@@ -285,7 +286,6 @@ body {
 
 .league-fixtures .matches > .match > div {
      width: 33.333%;
-
 }
 
 .share-link {

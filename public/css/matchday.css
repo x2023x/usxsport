@@ -12,14 +12,14 @@ body {
      background-color: #ECEEF2;
 }
 
-.matchday-container header {
+.matchday-container .header2 {
      background: rgb(0,135,32);
      background: linear-gradient(90deg, rgba(0,135,32,1) 0%, rgb(97, 198, 15) 50%, rgba(52,175,0,1) 100%);
      color: #333;
      width: 100%;
      text-align: center;
      justify-content: center;
-     height: 3.4rem;
+     height: 3.4rem; font-size: 0.35rem;
 }
 
 .body-content {
@@ -31,22 +31,22 @@ body {
      flex-direction: column;
 }
 
-header {
+.header2 {
      display: flex;
      justify-content: center;
      align-items: center;
      width: 100%;
 }
 
-.head-title {
+.head-titles {
      display: flex;
      width: 100%;
      justify-content: center;
      flex-direction: row-reverse;
 }
 
-.head-title a {
-     font-size: 0.65rem;
+.head-titles a {
+     font-size: 0.12rem;
      margin: 0 0.4rem;
      display: flex;
      text-decoration: none;
@@ -58,14 +58,16 @@ header {
      color: #fff;
      height: 2.3rem;
 }
-
-.head-title a:nth-child(1) {
+.head-titles a h2{
+     font-size: 0.8rem
+}
+.head-titles a:nth-child(1) {
      background-color: #104783;
 }
-.head-title a:nth-child(2) {
+.head-titles a:nth-child(2) {
      background-color: #931800;
 }
-.head-title a:nth-child(3) {
+.head-titles a:nth-child(3) {
      background-color: #caa107;
 }
 
@@ -182,6 +184,7 @@ header {
      background-color: #3b83ff;
      border-radius: 5px;
      padding: 4px;
+     color: #fff;
 }
 
 .finished-grey {
@@ -274,7 +277,7 @@ header {
 
 @media only screen and (max-width: 476px) {
      
-     .head-title a {
+     .head-titles a {
           font-size: 0.43rem;
           width: 33.333%;
      }
@@ -300,7 +303,7 @@ header {
      }
 
      .now-green {
-          font-size: 0.75rem;
+          font-size: 0.75rem;color:#fff;
      }
 
      .paused-grey {

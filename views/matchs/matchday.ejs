@@ -6,8 +6,8 @@
      <%- include('../partials/navbar.ejs') %>
 
      <div class="matchday-container">
-          <header>
-               <div class="head-title">
+          <div class="header2">
+               <div class="head-titles">
                     <a href="/matchday?date=<%= moment().subtract(1, 'days').startOf('day').format("YYYY-MM-DD") %>"><h2>مباريات الامس</h2></a>
 
                     <a href="/matchday?date=<%= moment().format("YYYY-MM-DD") %>"><h2>مباريات اليوم</h2></a>
@@ -16,7 +16,7 @@
                     <a href="#" class="download-all-leagues"><h2>PNG تنزيل</h2></a>
                     
                </div>
-          </header>
+          </div>
           <% if(error) { %>
           <div class="error-message-con">
                <p class="error-message"><%= error %></p>
