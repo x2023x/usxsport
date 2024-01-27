@@ -34,7 +34,7 @@ async function getStanding(leagueCode) {
                seasonInfo = responseData.season
            
                standings = responseData.standings[0].table
-               console.log(standings)
+               
                return responseData, standings, seasonInfo
            })
      } catch (error) {

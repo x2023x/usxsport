@@ -39,7 +39,7 @@ async function getGroupMatches() {
 async function getStats() {
      try {
           
-          let url = `https://webws.365scores.com/web/stats/?appTypeId=5&langId=27&timezoneName=Asia/Baghdad&userCountryId=114&competitions=572&competitors=&withSeasons=true`;
+          let url = `https://webws.365scores.com/web/stats?competitions=572`;
           
           await axios.get(url)
           .then(async function(response) {

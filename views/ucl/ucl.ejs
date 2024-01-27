@@ -210,7 +210,7 @@
                          <h2>- الاعلى تقييماً -</h2>
                     </div>
                     <ul class="scorers ul__stats">
-                         <% stats.stats[2].rows.slice(0, 4).forEach(player => { %>
+                         <% stats.stats[4].rows.slice(0, 4).forEach(player => { %>
                          <li class="scorer" dir="rtl">
                               <div>
                                    <div>
@@ -250,10 +250,10 @@
                          <div class="soccer-card">
                               <div class="soccer-details">
                                    <div>
-                                        <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= stats.stats[1].rows[0].entity.id %>" alt="player-profile">
-                                        <p dir="rtl"><%= stats.stats[1].rows[0].stats[0].value %> اسيست</p>
+                                        <img src="https://imagecache.365scores.com/image/upload/f_png,w_80,h_80,c_limit,q_auto:eco,dpr_2,d_Athletes:default.png,r_max,c_thumb,g_face,z_0.65/Athletes/<%= stats.stats[2].rows[0].entity.id %>" alt="player-profile">
+                                        <p dir="rtl"><%= stats.stats[2].rows[0].stats[0].value %> اسيست</p>
                                    </div>
-                                   <p><%= stats.stats[1].rows[0].entity.shortName %></p>
+                                   <p><%= stats.stats[2].rows[0].entity.shortName %></p>
                               </div>
                          </div>
                     </div>
