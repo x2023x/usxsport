@@ -1,44 +1,50 @@
 <header>
-     <nav>
-          <div>
-               
-               <h2>هايزيـن</h2>
+     <nav style="" class="navbar navbar-expand-lg navbar-light pt-4 px-0">
+          <a class="navbar-brand" href="/">
+            <img src="https://pbs.twimg.com/profile_images/1687732545213931520/fDijnP64_400x400.jpg" class="mr-2" style="border-radius: 50%;" width="42" alt="Heisen Football">
+            هايزين
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">🛖 الرئيسية<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/matchday?<%= moment().format("YY-MM-DD")%>">⚽️ مباريات اليوم</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" href="/live">⭕️ البث المباشر</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/premierleague-table">🏴󠁧󠁢󠁥󠁮󠁧󠁿 الدوري الانكليزي</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/laliga-table">🇪🇸 الدوري الاسباني</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" href="/seriea-table">🇮🇹 الدوري الايطالي</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" href="/bundesliga-table">🇩🇪 الدوري الالماني</a>
+              </li>
+              <li class="nav-item">
+               <a class="nav-link" href="/liguea-table">🇫🇷 الدوري الفرنسي</a>
+              </li><li class="nav-item">
+               <a class="nav-link" href="/ucl">دوري ابطال اوروبا</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto" style="display: flex; flex-direction:column;align-items:center;">
+              <li class="nav-item">
+                <a class="nav-link" href="https://twitter.com/IOO0K"><i class="fa fa-twitter"></i></a>
+              </li>
+            </ul
           </div>
-          <ul class="links">
-               <li><a href="/">الصفحة الرئيسية</a></li>
-               <li><a href="/matchday?<%= moment().format("YYYY-MM-DD") %>">مباريات اليوم</a></li>
-               <li class="dropdown-leagues" id="leagues-toggle">
-                    <a href="#" onclick="addActive()">ترتيب الدوريات</a>
-                    
-                    
-                         <ul class="leagues-dropdown hidden">
-                              <li>
-                                   <a href="/laliga-table">الدوري الاسباني</a>
-                                   <img src="https://www.fifplay.com/img/public/laliga-logo.png" alt="laliga">
-                              </li>
-                              <li>
-                                   <a href="/premierleague-table">الدوري الانكليزي</a>
-                                   <img src="https://www.fifplay.com/img/public/premier-league-2-logo.png" alt="premier-league">
-                              </li>
-                              <li>
-                                   <a href="/bundesliga-table">الدوري الالماني</a>
-                                   <img src="https://www.fifplay.com/img/public/bundesliga-logo.png" alt="bundesliga">
-                              </li>
-                              <li>
-                                   <a href="/seriea-table">الدوري الايطالي</a>
-                                   <img src="https://www.fifplay.com/img/public/serie-a-logo.png" alt="serieA">
-                              </li>
-                              <li>
-                                   <a href="/liguea-table">الدوري الفرنسي</a>
-                                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ligue1_Uber_Eats_logo.png/523px-Ligue1_Uber_Eats_logo.png" alt="liguea">
-                              </li>
-                         </ul>
-                    
-               </li>
-               <li id="last"><img src="https://imagecache.365scores.com/image/upload/f_png,w_68,h_68,c_limit,q_auto:eco,dpr_2,d_Countries:Round:19.png/v4/Competitions/572" alt="ucl"><a href="/ucl">دوري ابطال اوروبا</a></li>
-          </ul>
-          <div id="hamburger" onclick="showLinks()">
-               <i class="fa-solid fa-bars fa-2xl" style="color: #369457;"></i>
-          </div>
-     </nav>
+        </nav>     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- / Navigation -->  
 </header>
