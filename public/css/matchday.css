@@ -437,11 +437,20 @@ match {
      flex-direction: column;
      align-items: center;
 }
+
+.ofc {
+     width: auto;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+
 .match-date, .match-referee {
      display:flex;
      flex-direction: column;
      align-items: center;
      font-size: 10px;
+     width: 3rem;
      color: var(--color-text-secondary);
 }
 .match-date strong, .match-referee strong {

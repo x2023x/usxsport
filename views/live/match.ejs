@@ -1,68 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-     <head>
-          <meta charset="UTF-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="/./css/index.css">
-          <link rel="stylesheet" href="/./css/standings.css">
-          <link rel="stylesheet" href="/./css/nav.css">
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com">
-          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
-          <script src="/navbar.js" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-          <script src="https://kit.fontawesome.com/2c1b23ff4c.js" crossorigin="anonymous"></script>
-          <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
-     </head>
+     
 <body>
 
-     <header>
-          <nav>
-               <div>
-                    <img src="https://seeklogo.com/images/H/heisenberg-logo-6ACACAD210-seeklogo.com.png" alt="ucl">
-                    <h2>هايزيـن</h2>
-               </div>
-               <ul class="links">
-                    <li><a href="/">الصفحة الرئيسية</a></li>
-                    <li><a href="/matchday?<%= moment().format("YYYY-MM-DD") %>">مباريات اليوم</a></li>
-                    <li class="dropdown-leagues" id="leagues-toggle">
-                         <a href="#" onclick="addActive()">ترتيب الدوريات</a>
-                         
-                         
-                              <ul class="leagues-dropdown hidden">
-                                   <li>
-                                        <a href="/laliga-table">الدوري الاسباني</a>
-                                        <img src="https://www.fifplay.com/img/public/laliga-logo.png" alt="laliga">
-                                   </li>
-                                   <li>
-                                        <a href="/premierleague-table">الدوري الانكليزي</a>
-                                        <img src="https://www.fifplay.com/img/public/premier-league-2-logo.png" alt="premier-league">
-                                   </li>
-                                   <li>
-                                        <a href="/bundesliga-table">الدوري الالماني</a>
-                                        <img src="https://www.fifplay.com/img/public/bundesliga-logo.png" alt="bundesliga">
-                                   </li>
-                                   <li>
-                                        <a href="/seriea-table">الدوري الايطالي</a>
-                                        <img src="https://www.fifplay.com/img/public/serie-a-logo.png" alt="serieA">
-                                   </li>
-                                   <li>
-                                        <a href="/liguea-table">الدوري الفرنسي</a>
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ligue1_Uber_Eats_logo.png/523px-Ligue1_Uber_Eats_logo.png" alt="liguea">
-                                   </li>
-                              </ul>
-                         
-                    </li>
-                    <li id="last"><img src="https://imagecache.365scores.com/image/upload/f_png,w_68,h_68,c_limit,q_auto:eco,dpr_2,d_Countries:Round:19.png/v4/Competitions/572" alt="ucl"><a href="/ucl">دوري ابطال اوروبا</a></li>
-               </ul>
-               <div id="hamburger" onclick="showLinks()">
-                    <i class="fa-solid fa-bars fa-2xl" style="color: #369457;"></i>
-               </div>
-          </nav>
-     </header>
+     
 
 <script src="script.js"></script>
     <style>
