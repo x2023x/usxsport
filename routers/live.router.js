@@ -4,7 +4,7 @@ const moment = require("moment");
 const router  = express.Router();
 const mongoose = require("mongoose")
 const Channel = require("../models/Channels.model.js")
-const Pass = require("..models/Pass.model.js")
+const Pass = require("../models/Pass.model.js")
 router.get('/live', async function (req,res){
    console.log("hgggg")
     try {
