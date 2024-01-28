@@ -37,16 +37,19 @@
 					<table class="table table-hover" id="dev-table">
 						<thead>
 							<tr>
-								<th>&nbsp;</th>
+								<th>#</th>
 								<th>القناة</th>
 								<th>الحالة</th>
 								<th>🌠</th>
                                    </tr>
                               </thead>
     <tbody> 
-     <a href="">
+     <% let i = 0 %>
           <% channels.forEach(channel => { %>
+               <% i= i + 1 %>
+               <a href="/live/<%= channel.link %>">
      <tr>
+          <th><%= i %></th>
           <th><%= channel.name %></th>
           <th><%= channel.match %></th>
           <th><%= channel.status%></th>

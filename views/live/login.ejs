@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+     <link rel="stylesheet" href="./css/login.css">
+     <%- include("../partials/head.ejs") %>
+<body>
+     <%- include("../partials/navbar.ejs") %>
+     
+
+
+    <style>
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+
+<body>
+    <main>
+    <h4>Login to Server Managment</h4>
+    <br>
+    <form method="POST">
+    <div class="form-group col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    </main>
+     
+<script src="index.js"></script>
+<script src="navbar.js"></script>
+</body>
+</html>

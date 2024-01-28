@@ -32,6 +32,29 @@ channels: channels
       }
 })
 
+router.get('/usxlogin', async function (req, res){
+   try {
+    const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+        if(connect){   
+                res.render("./live/login.ejs", {
+                  error: null,
+                  pageTitle: "بث مباريات",
+                  cssFile: "login.css",
+                })
+        } else {
+            console.error("could not connect")
+        }
+   } catch (error) {
+    console.log(error)
+   }
+});
+router.post('/usxlogin', async function(req,res){
+    try {
+        
+    } catch (error) {
+        
+    }
+})
 router.get("/barca", (req,res)=> {
     res.render("./live/match.ejs")
 })
