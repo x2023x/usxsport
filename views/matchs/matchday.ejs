@@ -27,28 +27,38 @@
                     <% if(fixtures.length <= 0) { %>
                          <p class="no-matches">لا توجد مباريات اليوم</p>
                          <% } else { %>
+                              <% fixtures.sort((a, b) => { %>
+                                 <%  const nameA = a.competition.name.toUpperCase();%>
+                                   <% const nameB = b.competition.name.toUpperCase(); %>
+                                  <% if (nameA < nameB) { %>
+                                      <% return -1; %>
+                               <%    } %>
+                                  <% if (nameA > nameB) { %>
+                                   <%    return 1; %>
+                               <%    } %>
+                                  <% return 0; %>
+                            <%   }); %>
+                               
                     <div class="leagues">
-                      
-                         <% let liveFixtures = fixtures.filter(fixture => fixture.status == "IN_PLAY"); %>
-                         <% if(liveFixtures.length <= 0) { %>
-                              <% } else { %>
+                         <% let currentCompetition = null; %>
                          <div class="premier-league-fixtures">
-                              <div class="league-head">
-                                   <div>
-                                        <p>مباشـر</p>
-                                        <div class="blob"></div>
-                                   </div>
-                                   <div class="line"></div>
-                              </div>
                               <div class="league-fixtures">
+                                   <% fixtures.forEach(fixture => { %>
+                                        <% if (fixture.competition.name !== currentCompetition) { %>
+                                             
+                                             <div class="tournament-header">
+                                             <img src="<%= fixture.competition.emblem %>" /><%= fixture.competition.name %>
+                                             <% currentCompetition = fixture.competition.name; %>
+                                             </div>
+                                         <% } %>
                                    <div class="match">
                                         <div class="match-header">
-                                             <div class="match-status">Live</div>
-                                             <div class="match-tournament"><img src="https://assets.codepen.io/285131/pl-logo.svg" />English Premier League</div>
-                                             <div class="match-actions">
-                                                  <button class="btn-icon"><i class="material-icons-outlined">grade</i></button>
-                                                  <button class="btn-icon"><i class="material-icons-outlined">add_alert</i></button>
-                                             </div>
+                                             
+                                                  <% if(fixture.status == "IN_PLAY") { %>
+                                                   <div class="match-status"> 
+                                             مباشر
+                                                  </div>
+                                                  <% } else {} %>
                                         </div>
                                         <div class="match-content">
                                              <div class="column">
@@ -62,473 +72,53 @@
                                              <div class="column">
                                                   <div class="match-details">
                                                        <div class="match-date">
-                                                            12 Aug at <strong>19:00</strong>
+                                                            <strong><% let d = new Date(fixture.utcDate) %>
+                                                                 <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %></strong>
+                                                                 <%= moment(d).utc().utcOffset("+03:00").format("MM") %>/<%= moment(d).utc().utcOffset("+03:00").format("DD") %>
                                                        </div>
                                                        <div class="match-score">
-                                                            <span class="match-score-number match-score-number--leading">2</span>
+                                                            <span class="match-score-number
+                                                            <% if(fixture.score.fullTime.home>fixture.score.fullTime.away) { %>
+                                                             match-score-number--leading
+                                                             <% }else{} %>
+                                                             "><%= fixture.score.fullTime.home %></span>
                                                             <span class="match-score-divider">:</span>
-                                                            <span class="match-score-number">0</span>
+                                                            <span class="match-score-number <% if(fixture.score.fullTime.home<fixture.score.fullTime.away) { %>
+                                                                 match-score-number--leading
+                                                                 <% }else{} %>"><%= fixture.score.fullTime.away %></span>
                                                        </div>
                                                        <div class="match-time-lapsed">
-                                                            72'
+                                                            
+                          <% if(fixture.status == "FINISHED") { %>
+                              <p>انتهت</p>
+                              <% } else if(fixture.status == "IN_PLAY") { %>
+                              <p>جارية الان</p>
+                                        <% } else { %>
+                                             <p style="color:grey">متوقفة</p>
+                                             <% } %>            
                                                        </div>
                                                   </div>
                                              </div>
                                              <div class="column">
                                                   <div class="team team--away">
                                                        <div class="team-logo">
-                                                            <img src="<%= fixture.awayTeam.shortName %>" />
+                                                            <img src="<%= fixture.awayTeam.crest %>" />
                                                        </div>
                                                        <h2 class="team-name"><%= fixture.awayTeam.shortName %></h2>
                                                   </div>
                                              </div>
                                         </div>
                                    </div>
-                                   <% liveFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-               
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-               
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
+                                   <% }); %>
                          </div>
-                         <% } %>
-
-                         <% let uclFixtures = fixtures.filter(fixture => fixture.competition.id == 2001); %>
-                         <% if(uclFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="ucl-fixtures">
-                              <div class="league-head">
-                                   <div><p>دوري ابطال اوروبا</p> <img src="https://toppng.com/uploads/preview/uefa-champions-league-ball-logo-115487950369umsav4ca5.png" alt="ucl"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% uclFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-               
-                                             <div class="fixture-teams-results">
-                                                  <div class="fixture-round">
-                                                       <% if(fixture.stage == "GROUP_STAGE") { %>
-                                                            دور المجموعات
-                                                       <% } else if(fixture.stage == "LAST_16") { %>
-                                                       دور ال16
-                                                            <% } else if(fixture.stage == "QUARTER_FINALS") { %>
-                                                            ربع النهائي
-                                                                 <% }  else if(fixture.stage == "SEMI_FINALS") { %>
-                                                                 نصف النهائي
-                                                                      <% }  else if(fixture.stage == "FINAL") { %>
-                                                                      النهائي
-                                                                           <% } %>
-                                                  </div>
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("HH") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-               
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
                          
-                         <% let premierLeagueFixtures = fixtures.filter(fixture => fixture.competition.id == 2021); %>
-                         <% if(premierLeagueFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="premier-league-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري الانجليزي</p> <img src="https://seeklogo.com/images/P/premier-league-new-logo-D22A0CE87E-seeklogo.com.png" alt="premier-league"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% premierLeagueFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-               
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-               
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
                          <% } %>
 
-                         <% let laligaFixtures = fixtures.filter(fixture => fixture.competition.id == 2014); %>
-                         <% if(laligaFixtures.length <= 0) { %>
-                              
-                              <% } else { %>
-                                   <div class="laliga-fixtures">
-                                        <div class="league-head">
-                                             <div><p>الدوري الاسباني</p> <img src="https://assets.laliga.com/assets/logos/laliga-v/laliga-v-1200x1200.png" alt="laliga"></div>
-                                             <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% laligaFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-
-                         
-                         <% let serieAFixtures = fixtures.filter(fixture => fixture.competition.id == 2019); %>
-                         <% if(serieAFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="seriea-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري الايطالي</p> <img src="https://www.kindpng.com/picc/m/25-254792_serie-a-logo-png-transparent-png.png" alt="seriea"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% serieAFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-                         
-                         
-                         <% let bundesligaFixtures = fixtures.filter(fixture => fixture.competition.id == 2002); %>
-                         <% if(bundesligaFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="bundesliga-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري الالماني</p> <img src="https://www.fifplay.com/img/public/bundesliga-logo.png" alt="bundesliga"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% bundesligaFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-                         
-                         <% let ligue1Fixtures = fixtures.filter(fixture => fixture.competition.id == 2015); %>
-                         <% if(ligue1Fixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="ligue1-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري الفرنسي</p> <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Ligue1_logo.png" alt="ligue1"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% ligue1Fixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-
-                          
-                         <% let eredivisieFixtures = fixtures.filter(fixture => fixture.competition.id == 2003); %>
-                         <% if(eredivisieFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="eredivisie-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري الهولندي</p> <img src="https://i.pinimg.com/736x/5c/7e/7b/5c7e7b70cd67fa9a59d626a7efdf3a19.jpg" alt="eredivisie"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% eredivisieFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-
-
-
-                         <% let primeiraLigaFixtures = fixtures.filter(fixture => fixture.competition.id == 2017); %>
-                         <% if(primeiraLigaFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="primeiraLiga-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري البرتغالي</p> <img src="https://e7.pngegg.com/pngimages/366/912/png-clipart-2012-13-primeira-liga-taca-de-portugal-ligapro-2011-12-primeira-liga-football-emblem-sport.png" alt="primeiraLiga"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% primeiraLigaFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else if(fixture.status == "PAUSED") { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } else if(fixture.status == "SCHEDULED") { %>
-                                                                      <p class="paused-grey">مقررة</p>
-                                                                           <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-
-
-                         <% let championshipFixtures = fixtures.filter(fixture => fixture.competition.id == 2016); %>
-                         <% if(championshipFixtures.length <= 0) { %>
-                              <% } else { %>
-                         <div class="championship-fixtures">
-                              <div class="league-head">
-                                   <div><p>الدوري الانجليزي - الدرجة الاولى</p> <img src="https://seeklogo.com/images/S/sky-bet-championship-logo-C4F6910987-seeklogo.com.png" alt="championship"></div>
-                                   <div class="line"></div>
-                              </div>
-                              <div class="league-fixtures">
-                                   <% championshipFixtures.forEach(fixture => { %>
-                                        <div class="fixture-card">
-                                             <div class="fixture-home">
-                                                  <img src="<%= fixture.homeTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.homeTeam.shortName %>
-                                             </div>
-
-                                             <div class="fixture-teams-results">
-                                                   <p class="fixture-result"><%= fixture.score.fullTime.home %> - <%= fixture.score.fullTime.away %></p>
-                                                   <% if(fixture.status == "FINISHED") { %>
-                                                       <p class="finished-grey">انتهت</p>
-                                                       <% } else if(fixture.status == "IN_PLAY") { %>
-                                                       <p class="now-green">جارية الان</p>
-                                                            <% } else if(fixture.status == "TIMED") { %>
-                                                                 <p class="fixture-time">
-                                                                      <% let d = new Date(fixture.utcDate) %>
-                                                                      <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %>
-                                                                 </p>
-                                                                 <% } else if(fixture.status == "PAUSED") { %>
-                                                                      <p class="paused-grey">متوقفة</p>
-                                                                      <% } else if(fixture.status == "SCHEDULED") { %>
-                                                                      <p class="paused-grey">مقررة</p>
-                                                                           <% } %>
-                                             </div>
-
-                                             <div class="fixture-away">
-                                                  <img src="<%= fixture.awayTeam.crest %>" alt="team-logo">
-                                                  <%= fixture.awayTeam.shortName %>
-                                             </div>
-                                        </div>
-                                        <% }) %>
-                              </div>
-                         </div>
-                         <% } %>
-                    </div>
-                    <% } %>
-                    <div class="share-links">
-                         <div>
-                              <img width="20" src="https://logodownload.org/wp-content/uploads/2017/11/telegram-logo-8.png"><a href="https://t.me/l0OOI" class="share-link" style="text-decoration: none; color: #1e8efe;"> HeisenUSX</a>
-                         </div>
-                         <div>
-                              <img width="20" src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638258077460000000"><a href="https://x.com/IOO0K" style="text-decoration: none; color: #333;" class="share-link"> HeisenUSX</a>
+                         <div dir="rtl" style="display: flex; align-items: center; gap:0.5rem;">
+                              <img width="25" src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638258077460000000"><a href="https://x.com/IOO0K" style="text-decoration: none; color: #333;" class="share-link"> HeisenUSX</a>
                          </div>
                     </div>
-                    <p class="note">بتوقيت مكة المكرمة وبغداد</p>
+                    <p class="note" dir="rtl" style="align-self: center;">بتوقيت مكة المكرمة وبغداد</p>
                 </div>
           </div>
           <% } %>
