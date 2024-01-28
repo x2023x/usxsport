@@ -15,7 +15,10 @@ const uclRoute = require('./routers/ucl.router.js');
 const channelsRoute = require("./routers/live.router.js");
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));

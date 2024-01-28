@@ -20,13 +20,13 @@
     <main>
     <h4>Login to Server Managment</h4>
     <br>
-    <form method="POST">
+    <form method="POST"><% if(error) { %><%= error %> <% } %>
     <div class="form-group col-md-6">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+            <input type="text" name="pass" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
