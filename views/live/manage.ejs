@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-     <link rel="stylesheet" href="./css/list.css">
+     <link rel="stylesheet" href="./css/manage.css">
      <%- include("../partials/head.ejs") %>
 <body>
      <%- include("../partials/navbar.ejs") %>
@@ -19,7 +19,41 @@
 <body>
 
     <main>
-    
+        <div class="head-s">
+            <h4>Servers Managment</h4>
+            <a href="/manage/s/add?pass=<%= pass %>" class="btn-success p-1">سيرفر جديد</a>
+        </div><br><% if(error){ %> <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong> <%= error %> </strong>
+          </div><% } %>
+        <div class="container">
+             <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Link</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <% if(channels){ %>
+
+                        <% channels.forEach(channel => { %>
+                        <tr>
+                            <th><%= channel.name %></th>
+                            <th class="ofc"><a href="<%= channel.link %>">الرابط</a></th>
+                            <th>
+                            <a href="/manage/s/delete/<%= channel._id %>?pass=<%= pass %>">Delete</a>
+                            <a href="/manage/s/edit/<%= channel._id %>?pass=<%= pass %>">Edit</a>
+                            </th>
+                        </tr>
+                        <% }) %>
+                        <% } else{ %>No Servers<% } %>
+                    </tbody>
+                </table>
+             </div>
+        </div>
     </main>
      
 <script src="index.js"></script>

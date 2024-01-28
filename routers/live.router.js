@@ -54,8 +54,8 @@ router.post('/usxlogin', async function(req,res){
         if(connect){
           const pass = await Pass.findOne();console.log(pass)
           if(pass){ console.log(req.body.pass)
-            if (pass == req.body.pass){
-                res.redirect(`/manage/s?pass=${pass}`)
+            if (pass.pass == req.body.pass){
+                res.redirect(`/usxmanage/s?pass=${pass.pass}`)
             } else {
                 res.render("./live/login.ejs", {
                     pageTitle: "Login", error: "رمز خاطئ"
@@ -72,17 +72,17 @@ router.post('/usxlogin', async function(req,res){
             pageTitle: "login", error: "فشل الاتصال"
         })
     }
-}); router.get('/usxmanage', async function(req, res){
+}); router.get('/usxmanage/s', async function(req, res){
     try {
         const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
-        if(connect){ const pass = await Pass.findOne(); if(req.query.pass==pass){
+        if(connect){ const pass = await Pass.findOne(); if(req.query.pass==pass.pass){
             const channels = await Channel.find();
             if(channels){
                 res.render("./live/manage.ejs", {
 error: null,
 pageTitle: "Manage",
 cssFile: "manage.css",
-channels: channels
+channels: channels, pass: pass.pass
                 })
             }} else {
                 res.redirect("/usxlogin")
@@ -95,7 +95,7 @@ channels: channels
             error: "Failed to connect to DB \n حدث خطا اثناء الاتصال، حاول لاحقا",
             cssFile: "manage.css",
             channels: null,
-            pageTitle: "حدث خطا اثناء الاتصال"
+            pageTitle: "حدث خطا اثناء الاتصال", pass:req.query.pass
         });
     }
 })
@@ -103,4 +103,242 @@ router.get("/barca", (req,res)=> {
     res.render("./live/match.ejs")
 })
 
+router.get('/manage/s/edit/:id', async function(req, res){
+    try {
+        const pass = req.query.pass;
+        const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+        
+        if (connect) {
+            const passDocument = await Pass.findOne({ pass: pass });
+
+            if (passDocument) {
+                const channel = await Channel.findById(req.params.id);
+
+                if (channel) {
+                    res.render("./live/edit.ejs", {
+                        pageTitle: "Edit Server",
+                        cssFile: "edit.css",
+                        channel: channel,
+                        pass: pass
+                    });
+                } else {
+                    res.render("./live/manage.ejs", {
+                        error: "لم يتم ايجاد السيرفر!",
+                        pageTitle: "Manage Servers",
+                        cssFile: "manage.css",
+                        channels: channels,
+                        pass: pass
+                    });
+                }
+            } else {
+                res.render("./live/manage.ejs", {
+                    error: "كلمة مرور خاطئة!",
+                    pageTitle: "Manage Servers",
+                    cssFile: "manage.css",
+                    channels: channels,
+                    pass: pass
+                });
+            }
+        } else {
+            console.error("فشل الاتصال");
+        }
+    } catch (error) {
+        console.error(error);
+        res.render("./live/manage.ejs", {
+            error: "Failed to connect to DB \n حدث خطا اثناء الاتصال، حاول لاحقا",
+            cssFile: "manage.css",
+            channels: null,
+            pageTitle: "حدث خطا اثناء الاتصال",
+            pass: req.query.pass
+        });
+    }
+}); router.get('/manage/s/add', async function(req, res){
+    try {
+        const pass = req.query.pass;
+        const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+        
+        if (connect) {
+            const passDocument = await Pass.findOne({ pass: pass });
+            const channels = await Channel.find()
+            if (passDocument) { 
+                res.render("./live/add.ejs", {
+                    pageTitle: "إضافة سيرفر جديد",
+                    cssFile: "add.css",
+                    pass: pass
+                });
+            } else {
+                res.render("./live/manage.ejs", {
+                    error: "كلمة المرور غير صحيحة!",
+                    pageTitle: "إدارة السيرفرات",
+                    cssFile: "manage.css",
+                    channels: channels,
+                    pass: pass
+                });
+            }
+        } else {
+            console.error("تعذر الاتصال بقاعدة البيانات");
+        }
+    } catch (error) {
+        console.error(error);
+        res.render("./live/manage.ejs", {
+            error: "فشل الاتصال بقاعدة البيانات \n حدث خطأ أثناء الاتصال، يرجى المحاولة مرة أخرى",
+            cssFile: "manage.css",
+            channels: null,
+            pageTitle: "فشل الاتصال بقاعدة البيانات",
+            pass: req.query.pass
+        });
+    }
+});
+router.post('/manage/s/add', async function(req, res){
+    try {
+        const pass = req.query.pass;
+        const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+        
+        if (connect) {
+            const passDocument = await Pass.findOne({ pass: pass });
+
+            if (passDocument) {
+                const { name, link, status, provider, match, image } = req.body;
+                
+                
+                const newChannel = new Channel({ 
+                    name: name,
+                    link: link,
+                    status: status,
+                    provider: provider,
+                    match: match,
+                    image: image
+                });
+
+                
+                await newChannel.save();
+
+                res.redirect(`/usxmanage/s?pass=${pass}`);
+            } else {
+                res.render("./live/manage.ejs", {
+                    error: "كلمة المرور غير صحيحة!",
+                    pageTitle: "إدارة السيرفرات",
+                    cssFile: "manage.css",
+                    channels: channels,
+                    pass: pass
+                });
+            }
+        } else {
+            console.error("تعذر الاتصال بقاعدة البيانات");
+        }
+    } catch (error) {
+        console.error(error);
+        res.render("./live/manage.ejs", {
+            error: "فشل الاتصال بقاعدة البيانات \n حدث خطأ أثناء الاتصال، يرجى المحاولة مرة أخرى",
+            cssFile: "manage.css",
+            channels: null,
+            pageTitle: "فشل الاتصال بقاعدة البيانات",
+            pass: req.query.pass
+        });
+    }
+});
+router.post('/manage/s/edit/:id', async function(req, res){
+    try {
+        const pass = req.query.pass;
+        const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+        
+        if (connect) {
+            const passDocument = await Pass.findOne({ pass: pass });
+
+            if (passDocument) {
+                const channel = await Channel.findById(req.params.id);
+
+                if (channel) {
+                    channel.name = req.body.name;
+                    channel.link = req.body.link;
+                    channel.status = req.body.status;
+                    channel.img = req.body.img;
+                    channel.match = req.body.match
+                    await channel.save();
+                    res.redirect(`/usxmanage/s?pass=${pass}`);
+                } else {
+                    res.render("./live/manage.ejs", {
+                        error: "القناة غير موجودة!",
+                        pageTitle: "إدارة السيرفرات",
+                        cssFile: "manage.css",
+                        channels: channels,
+                        pass: pass
+                    });
+                }
+            } else {
+                res.render("./live/manage.ejs", {
+                    error: "كلمة المرور غير صحيحة!",
+                    pageTitle: "إدارة السيرفرات",
+                    cssFile: "manage.css",
+                    channels: channels,
+                    pass: pass
+                });
+            }
+        } else {
+            console.error("تعذر الاتصال بقاعدة البيانات");
+        }
+    } catch (error) {
+        console.error(error);
+        res.render("./live/manage.ejs", {
+            error: "فشل الاتصال بقاعدة البيانات \n حدث خطأ أثناء الاتصال، يرجى المحاولة مرة أخرى",
+            cssFile: "manage.css",
+            channels: null,
+            pageTitle: "فشل الاتصال بقاعدة البيانات",
+            pass: req.query.pass
+        });
+    }
+});
+
+router.get('/manage/s/delete/:id', async function(req, res){
+    try {
+        const pass = req.query.pass;
+        const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+        
+        if (connect) {
+            const passDocument = await Pass.findOne({ pass: pass });
+
+            if (passDocument) {
+                const channel = await Channel.findOneAndDelete({ _id: req.params.id });
+
+                if (channel) {
+                    const channels = await Channel.find();
+                    res.render("./live/manage.ejs", {
+                        error: "The Server Deleted!",
+                        pageTitle: "Manage Servers",
+                        cssFile: "manage.css",
+                        channels: channels,
+                        pass: pass
+                    });
+                } else {
+                    res.render("./live/manage.ejs", {
+                        error: "Channel not found!",
+                        pageTitle: "Manage Servers",
+                        cssFile: "manage.css",
+                        channels: channels,
+                        pass: pass
+                    });
+                }
+            } else {
+                res.render("./live/manage.ejs", {
+                    error: "Incorrect password!",
+                    pageTitle: "Manage Servers",
+                    cssFile: "manage.css",
+                    channels: channels,
+                    pass: pass
+                });
+            }
+        } else {
+            console.error("Could not connect to MongoDB");
+        }
+    } catch (error) {
+        console.error(error);
+        res.render("./live/manage.ejs", {
+            error: "Failed to connect to DB \n حدث خطا اثناء الاتصال، حاول لاحقا",
+            cssFile: "manage.css",
+            channels: null,
+            pageTitle: "حدث خطا اثناء الاتصال",
+            pass: req.query.pass
+        });
+    }
+});
 module.exports = router;

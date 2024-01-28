@@ -5,7 +5,8 @@ const channelSchema = new mongoose.Schema({
     status: Boolean, 
     provider: String, 
     link: String, 
-    status: String  
+    status: String,
+    img: String
 });
 
 const Channel = new mongoose.model('Channel', channelSchema);

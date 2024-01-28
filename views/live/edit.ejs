@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+     <link rel="stylesheet" href="./css/edit.css">
+     <%- include("../partials/head.ejs") %>
+<body>
+     <%- include("../partials/navbar.ejs") %>
+     
+
+
+    <style>
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+
+<body>
+    <main>
+<h3>Edit Server</h3>
+<form action="/manage/s/edit/<%= channel._id %>?pass=<%= pass %>" method="POST">
+    <div class="form-group">
+        <label for="channelName">اسم السيرفر:</label>
+        <input type="text" class="form-control" id="channelName" name="name" value="<%= channel.name %>">
+    </div><div class="form-group">
+        <label for="channelLink">رابط السيرفر:</label>
+        <input type="text" class="form-control" id="channelLink" name="link" value="<%= channel.link %>">
+    </div><div class="form-group">
+        <label for="channelStatus">حالة السيرفر:</label>
+        <input type="text" class="form-control" id="channelStatus" name="status" value="<%= channel.status %>">
+    </div>
+    <div class="form-group">
+        <label for="channelMatch">اللعبة الحالية:</label>
+        <input type="text" class="form-control" id="channelMatch" name="match" value="<%= channel.match %>">
+    </div>
+    <div class="form-group">
+
+        <label for="channelImg">اسم السيرفر:</label>
+        <input type="text" class="form-control" id="channelImg" name="img" value="<%= channel.img %>">
+    </div>
+    <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+</form>
+
+    </main>
+     
+<script src="index.js"></script>
+<script src="navbar.js"></script>
+</body>
+</html>

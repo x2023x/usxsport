@@ -1,0 +1,10 @@
+.ofc {
+width: 20px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+} tbody{
+    gap:1rem;
+} *{
+    background-color: red;
+}
