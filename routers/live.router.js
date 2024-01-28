@@ -52,13 +52,13 @@ router.post('/usxlogin', async function(req,res){
     try {
         const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority')
         if(connect){
-          const pass = await Pass.findOne();
-          if(pass){
+          const pass = await Pass.findOne();console.log(pass)
+          if(pass){ console.log(req.body.pass)
             if (pass == req.body.pass){
                 res.redirect(`/manage/s?pass=${pass}`)
             } else {
                 res.render("./live/login.ejs", {
-                    pageTitle: "Login", error: "فشل ايجاد رمز اتصال"
+                    pageTitle: "Login", error: "رمز خاطئ"
                 })
             }
           }
