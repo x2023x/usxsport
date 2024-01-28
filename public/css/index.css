@@ -107,3 +107,61 @@ body {
 .slide .nor {
 	border-radius: 0;
 }
+
+.loader {
+    width: 100%;
+    height: 100%;
+    background-color: #E6E6E6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: loader 0.5s 2.2s ease forwards;
+    animation: loader 0.5s 2.2s ease-in forwards;
+    z-index: 99;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 2px;
+    background-color: #FFEF00;
+    position: relative;
+    
+    
+}
+
+.progress-bar:before {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 4px;
+    position: absolute;
+    top: -1px;
+    border-left: 0px solid #FFEF00;
+    -webkit-animation: progress 2s ease-in-out forwards;
+    animation: progress 2s ease-in-out forwards;
+}
+
+.loader {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.6rem 0;
+	align-items: center;
+}
+
+@-webkit-keyframes loader {
+    to {left: -100%;}
+}
+
+@keyframes loader {
+    to {left: -100%;}
+}
+
+@-webkit-keyframes progress {
+    to {border-left: 200px solid #333;}
+}
+
+@keyframes progress {
+    to {border-left: 200px solid #777;}
+}
+

@@ -4,10 +4,24 @@
      <%- include("../partials/head.ejs") %>
 <body>
      <%- include("../partials/navbar.ejs") %>
-     
+     <div class="loader">
+          <div class="live"><div class="live-pulse"></div></div>
+       البث المباشر
+       <div class="progress-bar"></div>
+     </div>
 
 
-    <style>
+    <style>.loader{
+     width: 100%;
+     height: 100%;
+     background-color: #E6E6E6;
+     position: absolute;
+     top: 0;
+     left: 0;
+     -webkit-animation: loader 0.5s 2s ease forwards;
+     animation: loader 0.5s 2s ease-in forwards;
+     z-index: 99;}
+ 
         footer {
             background-color: #333;
             color: #fff;

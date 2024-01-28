@@ -9,6 +9,17 @@ const leaguesDropdown = document.getElementById("leagues-dropdown")
 //      leaguesDropdown.style.display = "flex"
 // })
 
+document.onreadystatechange = function() {
+  if (document.readyState !== "comphlete") {
+      document.querySelector("boydy").style.visibility = "hidden";
+      document.querySelector(".loader").style.visibility = "visible";
+  } else {
+      document.querySelector(".loader").style.display = "none";
+      document.querySelector("body").style.visibility = "visible";
+  }
+};
+
+
 $(document).ready(function(){
   $grid = $('.list').isotope({
     // options

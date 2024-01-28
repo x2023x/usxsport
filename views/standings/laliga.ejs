@@ -1,5 +1,16 @@
 <!DOCTYPE html>
      <html lang="en">
+
+
+     <div class="loader">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/LaLiga_logo_2023.svg/2048px-LaLiga_logo_2023.svg.png" width="60" >
+       <strong>
+         هايزين - لا ليغـا
+       </strong>
+       <div class="progress-bar"></div>
+     </div>
+          
+
           <%- include('../partials/head.ejs') %>
      <body>
           <%- include('../partials/navbar.ejs') %>
@@ -12,7 +23,7 @@
           <div class="container">
                     <div class="header">
                          <a href="#" class="download-league">
-                              <img src="<%= matches[0].competition.emblem %>" alt="laliga-logo">
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/LaLiga_logo_2023.svg/2048px-LaLiga_logo_2023.svg.png" alt="laliga-logo">
                          </a>
                                    <h2>
                                         <% if(seasonInfo) { %>
