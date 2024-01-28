@@ -99,9 +99,45 @@ channels: channels, pass: pass.pass
         });
     }
 })
-router.get("/barca", (req,res)=> {
-    res.render("./live/match.ejs")
+
+
+
+router.get("/live/:channelId", async (req,res)=> {
+   try {
+      const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
+      if(connect){
+         const channel = await Channel.findOne({ _id: req.params.channelId })
+         if(channel){
+         res.render("./live/match.ejs", {
+         pageTitle: channel.match,
+         channel: channel,
+         error: null
+    })} else {
+res.render("./live/match.ejs", {
+         pageTitle: "خطا",
+         channel: null,
+         error: "تم حذف السيرفر جرب سيرفر آخر"
+    })
+    }
+      } else {
+         res.render("./live/match.ejs", {
+         pageTitle: "خطا",
+         channel: null,
+         error: "فشل الاتصال، تحققق من الانترنت لديك وحاول مرة اخرى لاحقاً"
+    })
+      }
+   }
+   catch (error){
+      res.render("./live/match.ejs", {
+         pageTitle: "خطا",
+         channel: null,
+         error: "فشل الاتصال، تحققق من الانترنت لديك وحاول مرة اخرى لاحقاً"
+   })
+   console.log(error)}
 })
+
+
+
 
 router.get('/manage/s/edit/:id', async function(req, res){
     try {

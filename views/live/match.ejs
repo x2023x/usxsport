@@ -1,86 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-     
+     <link rel="stylesheet" href="./css/login.css">
+     <%- include("../partials/head.ejs") %>
+ 
 <body>
-
-     
-
-<script src="script.js"></script>
-    <style>
-
-
-
-    </style>
-</head>
+     <%- include("../partials/navbar.ejs") %>
 <body>
-    <main  style="width: 100vw;">
+    <main style="width:100vw;background:; display:flex; flex-direction:column;align-items:center;justify-content:center;">
     
-    
-        <iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://onelineplayer.com/player.html?autoplay=false&autopause=true&muted=false&loop=false&url=https%3A%2F%2Fbee.fun%3A2083%2Fchannel-1-plus%2Ftracks-v1a1%2Fmono.m3u8&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true" style="height: 100%; width: 100%; aspect-ratio: 1280 / 720;"></iframe>
-    
+
+<video id="videojs" class="video-js vjs-fluid vjs-forest-skin vjs-big-play-centered" controls preload="auto" autoplay muted fluid="true" liveui="true">
+
+     <source src="<%= channel.link %>"></source></source>" type="application/x-mpegURL">
+    <p class="vjs-no-js">
+        استخدم متصفح يدعم جافاسكربت
+        
+    </p>
+</video>
+
+
+<script type="text/javascript">
+var player = videojs('videojs');
+player.hlsQualitySelector();
+</script>
+
+</br>
+<h3>
+<%= channel.name %>
+</h3>
+
+
+
+
+
+
     </main>
-        <link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
-      
-        <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-        <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
-      
-      
-      
-        <video
-          id="my-video"
-          class="video-js"
-          controls
-          preload="auto"
-          width="640"
-          height="264"
-          poster="MY_VIDEO_POSTER.jpg"
-          data-setup="{}"
-        >
-          
-          <source src="https://bee.fun:2083/channel-1-plus/tracks-v1a1/mono.m3u8" type="application/x-mpegURL" />
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a
-            web browser that
-            <a href="https://videojs.com/html5-video-support/" target="_blank"
-              >supports HTML5 video</a
-            >
-          </p>
-        </video>
-      
-        <script src="https://vjs.zencdn.net/8.9.0/video.min.js"></script>
-      
-    <div class="share-links">
-     <div>
-          <img width="20" src="https://logodownload.org/wp-content/uploads/2017/11/telegram-logo-8.png"><a href="https://t.me/l0OOI" class="share-link" style="text-decoration: none; color: #1e8efe;"> HeisenUSX</a>
-     </div>
-     <div>
-          <img width="20" src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638258077460000000"><a href="https://x.com/IOO0K" style="text-decoration: none; color: #333;" class="share-link"> HeisenUSX</a>
-     </div>
-</div>
-    <br><br><br><br><br><br>
-    <footer style="position: fixed; width: 100%; bottom: 0; left: 0;">
-        <p>© Heisen. جميع الحقوق محفوظة 2024</p>
-    </footer>
-
-    <script>
-        // JavaScript code for the slider
-        const slider = document.querySelector("#slider");
-        const images = slider.getElementsByTagName("img");
-        let currentIndex = 0;
-
-        function changeSlide() {
-            for (let i = 0; i < images.length; i++) {
-                images[i].style.display = "none";
-            }
-
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].style.display = "block";
-        }
-
-        setInterval(changeSlide, 3000);
-    </script>
-     
-     
 <script src="index.js"></script>
 <script src="navbar.js"></script>
 </body>
