@@ -1,89 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-     <link rel="stylesheet" href="./css/login.css">
-     <%- include("../partials/head.ejs") %>
- 
+<head>
+    <link rel="stylesheet" href="./css/login.css">
+    <% include("../partials/head.ejs") %>
+</head>
 <body>
-     <%- include("../partials/navbar.ejs") %>
-<body>
+    <% include("../partials/navbar.ejs") %>
     <main style="width:100vw; display:flex; flex-direction:column;align-items:center;justify-content:center;">
-    
+        <video id="videojs" class="video-js vjs-fluid vjs-forest-skin vjs-big-play-centered" controls preload="auto" autoplay muted fluid="true" liveui="true">
+            <source src="<%= channel.link %>" type="application/x-mpegURL">
+            <p class="vjs-no-js">
+                استخدم متصفح يدعم جافاسكربت
+            </p>
+        </video>
 
-<video id="videojs" class="video-js vjs-fluid vjs-forest-skin vjs-big-play-centered" controls preload="auto" autoplay muted fluid="true" liveui="true">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.11.8/video.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.17.1/videojs-contrib-hls.min.js"></script>
+        <script type="text/javascript">
+            var player = videojs('videojs');
+            player.hlsQualitySelector();
+        </script>
 
-     <source src="<%= channel.link %>"></source></source>" type="application/x-mpegURL">
-    <p class="vjs-no-js">
-        استخدم متصفح يدعم جافاسكربت
-        
-    </p>
-</video>
+        <div class="server-con" lang="ar" dir="rtl">
+            <h3><%= channel.name %></h3>
+            <div class="paragraphs">
+                <p>⚽️ <%= channel.match %></p>
+                <p>🟢 <%= channel.status %></p>
+            </div>
+        </div>
 
+        <br>
 
-<script type="text/javascript">
-var player = videojs('videojs');
-player.hlsQualitySelector();
-</script>
+        <a target="_blank" href="https://t.me/x1934">
+            <div class="ad-con">
+                <p>ضع اعلانك هنا</p>
+            </div>
+        </a>
 
-</br>
-<div class="server-con" lang="ar" dir="rtl">
-<h3><%= channel.name %></h3>
-<div class="paragraphs">
-<p>⚽️ <%= channel.match %></p>
-<p>🟢 <%= channel.status %></p>
-</div>
-</div>
-
-<br>
-
-<a target="_blank" href="https://t.me/x1934">
-    <div class="ad-con">
-        <p>ضع اعلانك هنا</p>
-    </div>
-</a>
-
-
-<style>
-    .server-con {
-	display:flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	max-width: 960px;
-    }
-    .server-con h3{
-        align-self: center;
-        text-align: center;
-    }
-    .server-con p{
-        font-size: 1.2rem;
-    }
-    .server-con .paragraphs{
-        background-color: ;
-        padding: 0.6rem;
-        border-radius: 0.8rem;
-        width: 75%;
-        max-width: 680px;
-        text-align: center;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    }
-
-    .ad-con{
-        width: 14rem;
-        height: 10rem;
-        border: dashed gray 1px;
-        border-radius: 1rem;
-        background: whitesmoke;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-    }
-</style>
-
+        <style>
+            .server-con {
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                max-width: 960px;
+            }
+            .server-con h3 {
+                align-self: center;
+                text-align: center;
+            }
+            .server-con p {
+                font-size: 1.2rem;
+            }
+            .server-con .paragraphs {
+                background-color: ;
+                padding: 0.6rem;
+                border-radius: 0.8rem;
+                width: 75%;
+                max-width: 680px;
+                text-align: center;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            }
+            .ad-con {
+                width: 14rem;
+                height: 10rem;
+                border: dashed gray 1px;
+                border-radius: 1rem;
+                background: whitesmoke;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+            }
+        </style>
     </main>
-<script src="index.js"></script>
-<script src="navbar.js"></script>
+    <script src="index.js"></script>
+    <script src="navbar.js"></script>
 </body>
 </html>
