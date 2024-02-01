@@ -8,15 +8,7 @@
 <body>
     <main style="width:100vw; display:flex; flex-direction:column;align-items:center;justify-content:center;">
     
-
-<video id="videojs" class="video-js vjs-fluid vjs-forest-skin vjs-big-play-centered" controls preload="auto" autoplay muted fluid="true" liveui="true">
-
-     <source src="<%= channel.link %>"></source></source>" type="application/x-mpegURL">
-    <p class="vjs-no-js">
-        استخدم متصفح يدعم جافاسكربت
-        
-    </p>
-</video>
+        <iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://onelineplayer.com/player.html?autoplay=true&autopause=true&muted=true&loop=true&url=<%= channel.link %>&poster=<%= channel.img %>&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true&buttonColor=#ffffff&buttonSize=60&overlayColor=#ffcd00&overlayOpacity=0.3" style="height: 100%; width: 100%; aspect-ratio: 1920 / 1080; box-shadow: rgb(51, 51, 51) 0px 3px 30px -10px;"></iframe>
 
 
 <script type="text/javascript">
