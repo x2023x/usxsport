@@ -100,7 +100,9 @@ channels: channels, pass: pass.pass
     }
 })
 
-
+router.get("/x", async (req,res)=> {
+    res.render("./live/video.ejs")
+})
 
 router.get("/live/:channelId", async (req,res)=> {
    try {
