@@ -100,9 +100,6 @@ channels: channels, pass: pass.pass
     }
 })
 
-router.get("/x", async (req,res)=> {
-    res.render("./live/video.ejs")
-})
 
 router.get("/live/:channelId", async (req,res)=> {
    try {
@@ -111,7 +108,7 @@ router.get("/live/:channelId", async (req,res)=> {
          const channel = await Channel.findOne({ _id: req.params.channelId })
          if(channel){
          res.render("./live/match.ejs", {
-         pageTitle: channel.match,
+         pageTitle: channel.name,
          channel: channel,
          error: null
     })} else {
@@ -154,7 +151,7 @@ router.get('/manage/s/edit/:id', async function(req, res){
 
                 if (channel) {
                     res.render("./live/edit.ejs", {
-                        pageTitle: "Edit Server",
+                        pageTitle: "تحرير القناة",
                         cssFile: "edit.css",
                         channel: channel,
                         pass: pass
@@ -162,7 +159,7 @@ router.get('/manage/s/edit/:id', async function(req, res){
                 } else {
                     res.render("./live/manage.ejs", {
                         error: "لم يتم ايجاد السيرفر!",
-                        pageTitle: "Manage Servers",
+                        pageTitle: "إدارة القنوات",
                         cssFile: "manage.css",
                         channels: channels,
                         pass: pass
@@ -171,7 +168,7 @@ router.get('/manage/s/edit/:id', async function(req, res){
             } else {
                 res.render("./live/manage.ejs", {
                     error: "كلمة مرور خاطئة!",
-                    pageTitle: "Manage Servers",
+                    pageTitle: "إدارة القنوات",
                     cssFile: "manage.css",
                     channels: channels,
                     pass: pass
@@ -236,18 +233,19 @@ router.post('/manage/s/add', async function(req, res){
             const passDocument = await Pass.findOne({ pass: pass });
 
             if (passDocument) {
-                const { name, link, status, provider, match, image } = req.body;
-                
+                const { name, link, status, desc, locked, img, featured, cover, type } = req.body;
                 
                 const newChannel = new Channel({ 
                     name: name,
                     link: link,
                     status: status,
-                    provider: provider,
-                    match: match,
-                    image: image
+                    desc: desc,
+                    locked: locked,
+                    img: img,
+                    featured: featured,
+                    cover: cover,
+                    chType: type
                 });
-
                 
                 await newChannel.save();
 
@@ -291,7 +289,12 @@ router.post('/manage/s/edit/:id', async function(req, res){
                     channel.link = req.body.link;
                     channel.status = req.body.status;
                     channel.img = req.body.img;
-                    channel.match = req.body.match
+                    channel.desc = req.body.desc;
+                    channel.cover = req.body.cover;
+                    channel.featured = req.body.featured;
+                    channel.locked = req.body.locked;
+                    channel.chType = req.body.type
+
                     await channel.save();
                     res.redirect(`/usxmanage/s?pass=${pass}`);
                 } else {
@@ -350,7 +353,7 @@ router.get('/manage/s/delete/:id', async function(req, res){
                 } else {
                     res.render("./live/manage.ejs", {
                         error: "Channel not found!",
-                        pageTitle: "Manage Servers",
+                        pageTitle: "إدارة القنوات",
                         cssFile: "manage.css",
                         channels: channels,
                         pass: pass
@@ -359,7 +362,7 @@ router.get('/manage/s/delete/:id', async function(req, res){
             } else {
                 res.render("./live/manage.ejs", {
                     error: "Incorrect password!",
-                    pageTitle: "Manage Servers",
+                    pageTitle: "إدارة القنوات",
                     cssFile: "manage.css",
                     channels: channels,
                     pass: pass

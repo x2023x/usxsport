@@ -32,48 +32,54 @@
 
 <body>
     <main>
+<container>
+     <nav2>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item2 nav-link active" id="nav-news-tab" data-toggle="tab" href="#nav-news" role="tab" aria-controls="nav-news" aria-selected="true">أخبار</a>
+            <a class="nav-item2 nav-link" id="nav-sports-tab" data-toggle="tab" href="#nav-sports" role="tab" aria-controls="nav-sports" aria-selected="false">رياضة</a>
+            <a class="nav-item2 nav-link" id="nav-entertaiment-tab" data-toggle="tab" href="#nav-entertaiment" role="tab" aria-controls="nav-entertaiment" aria-selected="false">ترفيه</a>
+          </div>
+        </nav2>
+        <div class="tab-content" id="nav-tabContent"><br>
+          <div class="tab-pane fade show active" id="nav-news" role="tabpanel" aria-labelledby="nav-news-tab"><div class="container">
+               <div class="row row-cols-auto g-4">
+                   <% channels.forEach(channel => { %>
+                       <% if (channel.chType === 'news') { %>
+                           <div class="col">
+                               <a href="/live/<%= channel._id %>">
+                                   <div class="card" style="background-image: url('<%= channel.img %>');">
+                                       <span class="dot"></span>
+                                       <div class="overlay"></div>
+                                   </div>
+                               </a>
+                           </div>
+                       <% } %>
+                   <% }); %>
+               </div>
+           </div></div>
+          <div class="tab-pane fade" id="nav-sports" role="tabpanel" aria-labelledby="nav-sports-tab">
+               <div class="row row-cols-auto g-4">
+                   <% channels.forEach(channel => { %>
+                       <% if (channel.chType === 'sports') { %>
+                           <div class="col">
+                               <a href="/live/<%= channel._id %>">
+                                   <div class="card" style="background-image: url('<%= channel.img %>');">
+                                       
+                                       <div class="overlay"></div>
+                                   </div>
+                               </a>
+                           </div>
+                       <% } %>
+                   <% }); %>
+               </div>
+           </div>
+          <div class="tab-pane fade" id="nav-entertaiment" role="tabpanel" aria-labelledby="nav-entertaiment-tab">...</div>
+        </div>
+            </container>
+
+
 <br>
-<div class="container">
-    <h4>البث المباشر من هايزين</h4>
-    	<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<div class="pull-right">
-							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-								<i class="glyphicon glyphicon-filter"></i>
-							</span>
-						</div>
-					</div>
-					<div class="panel-body">
-						<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="البحث عن قناة" />
-					</div>
-					<table class="table table-hover" id="dev-table">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>القناة</th>
-								<th>المباراة</th>
-								<th>الحالة</th>
-                                   </tr>
-                              </thead>
-    <tbody> 
-     <% let i = 0 %>
-          <% channels.forEach(channel => { %>
-               <% i= i + 1 %>
-               <a href="/live/<%= channel.link %>">
-     <tr>
-          <th><%= i %></th>
-          <th><%= channel.name %></th>
-          <th><%= channel.match %></th>
-          <th><%= channel.status%></th>
-        <th><a href="/live/<%= channel._id %>"><i class="fa fa-lg fa-play-circle"></i></a></th>
-     </tr>
-     <% }) %>
-     </a>
-   </tbody>
-   </table>
-    </main>
+</main>
     <div lang="ar" dir="rtl" class="alert alert-dark" role="alert">
  نحن غير مسؤولين عن اي انتهاك للحقوق حيث ان البثوث من مواقع اخرى غير مسؤولين عنها في حال حدوث اي مشاكل قانونية او شرعية 
  اذا كان لديك اي استفسار اتصل بنا على تلكرام عبر حساب التلكرام الاتي: @x1934
@@ -94,7 +100,7 @@
      </div>
         <p>© Heisen. جميع الحقوق محفوظة 2024</p>
     </footer>
-     
+    
 <script src="index.js"></script>
 <script src="navbar.js"></script>
 </body>

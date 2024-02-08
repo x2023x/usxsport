@@ -26,25 +26,41 @@
     </div><div class="form-group">
         <label for="channelLink">رابط السيرفر:</label>
         <input type="text" class="form-control" id="channelLink" name="link" value="<%= channel.link %>">
-    </div><div class="form-group">
-        <label for="channelStatus">حالة السيرفر:</label>
-        <input type="text" class="form-control" id="channelStatus" name="status" value="<%= channel.status %>">
     </div>
     <div class="form-group">
-        <label for="channelMatch">اللعبة الحالية:</label>
-        <input type="text" class="form-control" id="channelMatch" name="match" value="<%= channel.match %>">
+        <label for="channlDesc">وصف السيرفر:</label>
+        <input type="text" class="form-control" id="channelDesc" name="desc" value="<%= channel.desc %>">
     </div>
     <div class="form-group">
-
         <label for="channelImg">شعار السيرفر:</label>
         <input type="text" class="form-control" id="channelImg" name="img" value="<%= channel.img %>">
     </div>
+    <div class="form-group">
+        <label for="channelStatus">حالة السيرفر:</label>
+        <input type="text" class="form-control" id="channelStatus" name="status" value="<%= channel.status %>">
+    </div><div class="form-group">
+        <label for="channelType">نوع السيرفر:</label>
+        <input type="text" class="form-control" id="ChannelType" name="type" value="<%= channel.chType %>">
+    </div>
+    <div class="form-group">
+        <label for="channelFeatured">تمييز السيرفر:</label>
+        <input type="text" class="form-control" id="channelFeatured" name="featured" value="<%= channel.featured %>">
+    </div>
+    <div class="form-group">
+        <label for="channelLocked">قفل السيرفر:</label>
+        <input type="text" class="form-control" id="channelLocked" name="locked" value="<%= channel.locked %>">
+    </div>
+    <label for="channelCover">غلاف السيرفر:</label>
+    <input type="text" class="form-control" id="channelCover" name="cover" value="<%= channel.cover %>">
+    <br>
     <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
 </form>
 
     </main>
-     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="index.js"></script>
+
+
 <script src="navbar.js"></script>
 </body>
 </html>

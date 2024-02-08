@@ -1,12 +1,14 @@
 const mongoose = require("mongoose")
 const channelSchema = new mongoose.Schema({ 
     name: String, 
-    match: String,
-    status: Boolean, 
-    provider: String, 
-    link: String, 
     status: String,
-    img: String
+    link: String,
+    img: String,
+    locked: String,
+    desc: String,
+    featured: String,
+    cover: String,
+    chType: String
 });
 
 const Channel = new mongoose.model('Channel', channelSchema);
