@@ -30,6 +30,7 @@
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
           <script src="/navbar.js" crossorigin="anonymous"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -101,23 +102,53 @@
 </head>
 <body>
   <main>
+    <div id="carouselSlider" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% if(channels) { %>
+        <% channels.forEach(channel => { %>
+          <% if(channel.cover == "-"){ %>
+            <% } else { %>
+              <a href="/live/<%= channel._id %>">
+        <div class="carousel-item active">
+          <p dir="rtl">شاهد الان على <%=channel.name %></p>
+          <img src="<%= channel.cover %>" class="d-block w-100" alt="<%= channel.name%>">
+        </div></a>
+      <% } %>
+        <% }) %>
+        <% } else { %>
+          <% } %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+
+
+
       <div class="slider">
         <div class="slide-track">
-          <div class="slide">
+          <div class="slidex">
             <img src="https://i.ibb.co/YLgYyn7/IMG-5581.jpg" height="80" width="80" alt="Legend-Store">
           </div>
         
-          <div class="slide">
+          <div class="slidex">
             <img src="https://img.kooora.com/?i=o%2Fh%2F1%2F933%2Falrabiaa-iraq-1.png" height="100" width="100" alt="rabeea-sport">
           </div>
 
-          <div class="slide">
+          <div class="slidex">
             <img class="nor" src="https://upload.wikimedia.org/wikipedia/fr/e/e7/BeIN_Sport_%282012%29.png" height="80" alt="bein">
           </div>
         </div>
           </div>
     </main>
-
+  
 
     <footer style="position: fixed; width: 100%; bottom: 0; left: 0; display:flex; flex-direction: column; align-items: center; background-color: aliceblue;">
     <div class="share-links">
@@ -130,7 +161,7 @@
     </div>
         <p>© Heisen. جميع الحقوق محفوظة 2024</p>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

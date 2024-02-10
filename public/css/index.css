@@ -63,6 +63,7 @@ body {
 		transform: translateX(calc(-250px * 7));
    }
 }
+
 .slider {
 	background: white;
 	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
@@ -100,11 +101,11 @@ body {
 	width: 250px;
 }
 
-.slide img {
+.slidex img {
 	border-radius: 50%;
 	filter: grayscale(100%);
 }
-.slide .nor {
+.slidex .nor {
 	border-radius: 0;
 }
 
@@ -163,5 +164,19 @@ body {
 
 @keyframes progress {
     to {border-left: 200px solid #777;}
+} 
+
+.carousel-item {
+	position: relative;
 }
 
+.carousel-item p {
+	position: absolute;
+	right: 15px;
+	bottom: 6px;
+	padding: 4px;
+	background-color: #FFEF00;
+	color: #333;
+	border-radius: 4px;
+	text-decoration: none;
+}

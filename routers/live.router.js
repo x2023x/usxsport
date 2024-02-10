@@ -5,8 +5,25 @@ const router  = express.Router();
 const mongoose = require("mongoose")
 const Channel = require("../models/Channels.model.js")
 const Pass = require("../models/Pass.model.js")
+
+
+
+router.get("/", async (req,res)=> {
+    const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority')
+    if(connect){
+      const channels = await Channel.find()
+      res.render("index.ejs", {
+        channels,
+
+      })
+    }else {
+       res.render("index.ejs", {
+        channels: null
+       })
+    }
+})
+
 router.get('/live', async function (req,res){
-   console.log("hgggg")
     try {
         const connect = await mongoose.connect('mongodb+srv://heisenypto:123qwasz@livedbusx.vdflq0d.mongodb.net/?retryWrites=true&w=majority');
         if(connect){

@@ -29,11 +29,4 @@ app.use(channelsRoute)
 app.use('/ucl', proxy());
 app.use('/matchday', proxy());  
 
-app.get('/', function(req, res) {
-  
-  res.render('index.ejs', {
-    
-  });
-});
-
 app.listen(5000, ()=> console.log("listen on 5000"));
