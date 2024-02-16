@@ -1,170 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
-  <!-- Mobsted {literal} -->
-<script>
-  (function(m,o,b,s,t,e,d){
-    m[t]=m[t]||{},e=o.createElement(b),d=o.getElementsByTagName(b)[0],
-      e.async=1,e.src=s,d.parentNode.insertBefore(e,d)
-  })(window,document,"script","https://cdn.mobsted.com/pwaless.js","pwaless");
-  pwaless.config = {
-    accountId: "b7c84be7",
-    server: "mobsted.com",
-    projectId: 15
-  }
-</script>
-<div class="loader">
-  <strong>
-    هايزين - الكرة الاوروبية
-  </strong>
-  <div class="progress-bar"></div>
-</div>
-
-<!-- /Mobsted {/literal} -->
-
-     <head>
-          <meta charset="UTF-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="/./css/index.css">
-          <link rel="stylesheet" href="/./css/standings.css">
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-          <script src="/navbar.js" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-          <script src="https://kit.fontawesome.com/2c1b23ff4c.js" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/shards-ui/3.0.0/js/shards.min.js"></script><style>*{font-family:'Readex Pro', sans-serif;}</style>
-          <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
-     </head>
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2JM7EW0Q4B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2JM7EW0Q4B');
-</script>
-<body style="font-family: 'Readex Pro', sans-serif;">
-
-     <header>
-          <nav style="" class="navbar navbar-expand-lg navbar-light pt-4 px-8">
-               <a class="navbar-brand" href="/">
-                 <img src="https://i.ibb.co/M5RgpN8/IMG-9736.png" class="mr-2" style="border-radius: 50%;" width="48" alt="Heisen Football">
-                 هايزين
-               </a>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                 <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                 <ul class="navbar-nav" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                   <li class="nav-item active">
-                     <a class="nav-link" href="/">🛖 الرئيسية<span class="sr-only">(current)</span></a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="/matchday?<%= moment().format("YY-MM-DD")%>">⚽️ مباريات اليوم</a>
-                   </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="/live">⭕️ البث المباشر</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="/premierleague-table">🏴󠁧󠁢󠁥󠁮󠁧󠁿 الدوري الانكليزي</a>
-                   </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="/laliga-table">🇪🇸 الدوري الاسباني</a>
-                   </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="/seriea-table">🇮🇹 الدوري الايطالي</a>
-                   </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="/bundesliga-table">🇩🇪 الدوري الالماني</a>
-                   </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="/liguea-table">🇫🇷 الدوري الفرنسي</a>
-                   </li><li class="nav-item">
-                    <a class="nav-link" href="/ucl">دوري ابطال اوروبا</a>
-                   </li>
-                 </ul>
-   
-                 <ul class="navbar-nav ml-auto" style="display: flex; flex-direction:column;align-items:center;">
-                   <li class="nav-item">
-                     <a class="nav-link" href="https://twitter.com/IOO0K"><i class="fa fa-twitter"></i></a>
-                   </li>
-                 </ul
-               </div>
-             </nav>
-             <!-- / Navigation -->
-     </header>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/./css/index.css">
+    <link rel="stylesheet" href="/./css/standings.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/2c1b23ff4c.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            font-family: 'Readex Pro', sans-serif;
+        }
+    </style>
+    <title>هايزين | مباريات اليوم ونتائج واحصائيات</title>
 </head>
+
 <body>
-  <main>
-    <div id="carouselSlider" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% if(channels) { %>
-        <% channels.forEach(channel => { %>
-          <% if(channel.cover == "-"){ %>
-            <% } else { %>
-              <a href="/live/<%= channel._id %>">
-        <div class="carousel-item active">
-          <p dir="rtl">شاهد الان على <%=channel.name %></p>
-          <img src="<%= channel.cover %>" class="d-block w-100" alt="<%= channel.name%>">
-        </div></a>
-      <% } %>
-        <% }) %>
-        <% } else { %>
-          <% } %>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselSlider" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselSlider" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary p-4">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="https://i.ibb.co/M5RgpN8/IMG-9736.png" class="mr-2" style="border-radius: 50%;" width="48"
+                    alt="Heisen Football">
+                هايزين
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">🛖 الرئيسية<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/matchday?<%= moment().format("YY-MM-DD")%>">⚽️ مباريات اليوم</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/live">⭕️ البث المباشر</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/premierleague-table">🏴 الدوري الانكليزي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/laliga-table">🇪🇸 الدوري الاسباني</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/seriea-table">🇮🇹 الدوري الايطالي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bundesliga-table">🇩🇪 الدوري الالماني</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/liguea-table">🇫🇷 الدوري الفرنسي</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ucl">دوري ابطال اوروبا</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto" style="display: flex; flex-direction:column;align-items:center;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/IOO0K"><i class="fa fa-twitter"></i></a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        <!-- / Navigation -->
+    </header>
 
-
-
-
-
-      <div class="slider">
-        <div class="slide-track">
-          <div class="slidex">
-            <img src="https://i.ibb.co/YLgYyn7/IMG-5581.jpg" height="80" width="80" alt="Legend-Store">
-          </div>
-        
-          <div class="slidex">
-            <img src="https://img.kooora.com/?i=o%2Fh%2F1%2F933%2Falrabiaa-iraq-1.png" height="100" width="100" alt="rabeea-sport">
-          </div>
-
-          <div class="slidex">
-            <img class="nor" src="https://upload.wikimedia.org/wikipedia/fr/e/e7/BeIN_Sport_%282012%29.png" height="80" alt="bein">
-          </div>
+    <main>
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% if(channels) { %>
+                <% channels.forEach(channel => { %>
+                <% if(channel.cover.includes("http")){ %>
+                <a href="/live/<%= channel._id %>">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <p><%= channel.name %> شاهد على</p>
+                        <img src="<%= channel.cover %>" class="d-block w-100" alt="<%= channel.name%>">
+                    </div>
+                </a>
+                <% } %>
+                <% }) %>
+                <% } else { %>
+                <% } %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-          </div>
-    </main>
-  
 
-    <footer style="position: fixed; width: 100%; bottom: 0; left: 0; display:flex; flex-direction: column; align-items: center; background-color: aliceblue;">
-    <div class="share-links">
-      <div>
-           <img width="20" src="https://logodownload.org/wp-content/uploads/2017/11/telegram-logo-8.png"><a href="https://t.me/l0OOI" class="share-link" style="text-decoration: none; color: #1e8efe;"> HeisenUSX</a>
-       </div>
-     <div>
-          <img width="20" src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638258077460000000"><a href="https://x.com/IOO0K" style="text-decoration: none; color: #333;" class="share-link"> HeisenUSX</a>
-     </div>
-    </div>
-        <p>© Heisen. جميع الحقوق محفوظة 2024</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-     <script src="index.js"></script>
-</body>
-</html>
+        <div dir="rtl" class="container px-4 py-5" id="custom-cards">
+            <h2 class="pb-2 border-bottom">اقوى البطولات</h2>
+        
+            <div dir="rtl" class="fcard row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-3">
+              <div class="col">
+                <div class="card card-cover h-70 bg-center overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://e0.pxfuel.com/wallpapers/744/250/desktop-wallpaper-uefa-champions-league.jpg');">
+                  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">دوري أبطال أوروبا</h3>
+                    <ul class="d-flex list-unstyled mt-auto">
+                      <li class="me-auto">
+                        <img src="https://sports.cbsimg.net/fly/images/league-logos/light/1236994.svg" alt="Bootstrap" width="32" height="32">
+                      </li>
+                      <li class="d-flex align-items-center me-3">
+                        <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                        <small>اوروبا</small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              <div class="col">
+                <div class="fcard card card-cover h-70 sdasss overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://wallpapers.com/images/hd/premier-league-background-z0e2roa3oht27bos.jpg');">
+                  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">الدوري الانكليزي</h3>
+                    <ul class="d-flex list-unstyled mt-auto">
+                      <li class="me-auto">
+                        <img src="https://png2.cleanpng.com/sh/cf16f35556dac849cc70d74cbc9c953b/L0KzQYm3V8EyN6drgZH0aYP2gLBuTcIxOWc2T595cnXwebb5TfxmaZh6fZ9ubnfvecTvTfZwd6Vned51LXzocbj8hb1tNZ1uh9C2ZX3yerq0VfI1PmFrSKk7MkK3QIK1UcQ4P2k8Tac6NUO0Q4KBUMI0OWQAUZD5bne=/kisspng-201617-premier-league-english-football-league-l-lion-emoji-5b460f07222401.1477875515313180231399.png" alt="Bootstrap" width="32" height="32">
+                      </li>
+                      <li class="d-flex align-items-center me-3">
+                        <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                        <small>اوروبا</small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="fcard tbag card card-cover h-70 sdasss overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/6423cf0ee2c6d0001d6226cb.jpg');">
+                  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">المواجهات الاقوى</h3>
+                    <ul class="d-flex list-unstyled mt-auto">
+                      <li class="me-auto">
+                      </li>
+                      <li class="d-flex align-items-center me-3">
+                        <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                        <small>العالم</small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <div dir="rtl" class="container px-4 py-1 my-5" id="featured-3">
+                <h2 class="pb-2 border-bottom">ميزات لا حصر لها</h2>
+                <div class="row g-4 py-3 row-cols-1 row-cols-lg-3">
+                  <div class="feature col">
+                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary fs-2 mb-3">
+                      <img src="https://i.ibb.co/d6B0CXP/hd.png" alt="hd" class="bi">
+                    </div>
+                    <h3 class="fs-2 text-body-emphasis">بث بدقة عالية الجودة</h3>
+                    <p>استمتع بجودة بث عالية وسلاسة بدون اي تقطيع وبتقنيات FHD و HEVC.</p>
+                  </div>
+                  <div class="feature col">
+                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary fs-2 mb-3">
+                      <img src="https://i.ibb.co/djhz3RP/advertising.png" alt="ads" class="bi">
+                    </div>
+                    <h3 class="fs-2 text-body-emphasis">لا اعلانات مزعجة</h3>
+                    <p>شاهد بدون فواصل أو إعلانات تملئ شاشة التطبيق, تجربة مشاهدة وإستخدام سلسة هو ما نضمنه لك.</p>
+                  </div>
+                  <div class="feature col">
+                    <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary fs-2 mb-3">
+                      <img src="https://i.ibb.co/mqc8jCv/infinity.png" alt="" class="bi">
+                    </div>
+                    <h3 class="fs-2 text-body-emphasis">تغطية لأكبر البطولات</h3>
+                    <p>لا تفوت أي مباراة لفريقك, التغطية يومية ولأقوى المباريات من كافة دوريات العالم.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="follow-section">
+                <p>تابعنا على</p>
+                <div class="share-links">
+                     <div>
+                          <a href="https://twitter.com/heizenbort"><i class="fa-brands fa-twitter fa-xl" style="color: #ffffff;"></i></a>
+                     </div>
+                     <div>
+                          <a href="https://t.me/heisenport"><i class="fa-brands fa-telegram fa-xl" style="color: #ffffff;"></i></a>
+                     </div>
+                </div>
+           </div>
+           <br>
+
+      </main>
+  
+  <br><br>
+      <footer style="position: relative; width: 100%; bottom: 0; left: 0; display:flex; flex-direction: column; align-items: center; background-color: aliceblue;">
+          
+          </div>
+          <p>© Heisen. جميع الحقوق محفوظة 2024</p>
+      </footer>
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      <script src="index.js"></script>
+  </body>
+  
+  </html>

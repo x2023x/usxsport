@@ -17,6 +17,7 @@
      <div class="matchday-container">
           <div class="header2">
                <div class="head-titles">
+               
                     <a href="/matchday?date=<%= moment().subtract(1, 'days').startOf('day').format("YYYY-MM-DD") %>"><h2>مباريات الامس</h2></a>
 
                     <a href="/matchday?date=<%= moment().format("YYYY-MM-DD") %>"><h2>مباريات اليوم</h2></a>
@@ -31,94 +32,104 @@
                <p class="error-message"><%= error %></p>
           </div>
           <% } else { %>
+               
           <div class="body-content">
                <div class="fixtures">
-                    <% if(fixtures.length <= 0) { %>
+                    <% if(events.length <= 0) { %>
                          <p class="no-matches">لا توجد مباريات اليوم</p>
-                         <% } else { %>
-                              <% fixtures.sort((a, b) => { %>
-                                 <%  const nameA = a.competition.name.toUpperCase();%>
-                                   <% const nameB = b.competition.name.toUpperCase(); %>
-                                  <% if (nameA < nameB) { %>
-                                      <% return -1; %>
-                               <%    } %>
-                                  <% if (nameA > nameB) { %>
-                                   <%    return 1; %>
-                               <%    } %>
-                                  <% return 0; %>
-                            <%   }); %>
-                               
+                         <% } else { %>                          
                     <div class="leagues">
-                         <% let currentCompetition = null; %>
                          <div class="premier-league-fixtures">
                               <div class="league-fixtures">
-                                   <% fixtures.forEach(fixture => { %>
-                                        <% if (fixture.competition.name !== currentCompetition) { %>
+                                
+                            <%   function organizeEventsByTournament(events) { %>
+                                  <% var organizedEvents = {}; %>
+                                  <% events.forEach(function(event) { %>
+                                    <%   var tournamentName = event.tournament.name; %>
+                                    <%   if (!organizedEvents[tournamentName]) { %>
+                                          <%  organizedEvents[tournamentName] = []; %>
+                                     <%  } %>
+                                     <%  organizedEvents[tournamentName].push(event); %>
+                                 <%  }); %>
+                                  <% return organizedEvents; %>
+                              <% } %>
+
+                            <%  var organizedEvents = organizeEventsByTournament(events.events); %>
+                               
+<% Object.keys(organizedEvents).forEach(function(tournamentName) { %>
+     
+<div class="tournament-header">
+     <img src="https://api.sofascore.app/api/v1/unique-tournament/<%= organizedEvents[tournamentName][0].tournament.uniqueTournament.id %>/image/light" /><%= tournamentName %>
+</div>
+
+     <% organizedEvents[tournamentName].forEach(function(event) { %>
+         
+          <div class="match">
+
+               <div class="match-header">
                                              
-                                             <div class="tournament-header">
-                                             <img src="<%= fixture.competition.emblem %>" /><%= fixture.competition.name %>
-                                             <% currentCompetition = fixture.competition.name; %>
-                                             </div>
-                                         <% } %>
-                                   <div class="match">
-                                        <div class="match-header">
-                                             
-                                                  <% if(fixture.status == "IN_PLAY") { %>
-                                                   <div class="match-status"> 
-                                             مباشر
-                                                  </div>
-                                                  <% } else {} %>
-                                        </div>
-                                        <div class="match-content">
-                                             <div class="column">
-                                                  <div class="team team--home">
-                                                       <div class="team-logo">
-                                                            <img src="<%= fixture.homeTeam.crest %>" />
-                                                       </div>
-                                                       <h2 class="team-name ofc"><%= fixture.homeTeam.shortName %></h2>
-                                                  </div>
-                                             </div>
-                                             <div class="column">
-                                                  <div class="match-details">
-                                                       <div class="match-date">
-                                                            <strong><% let d = new Date(fixture.utcDate) %>
-                                                                 <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %></strong>
-                                                                 <%= moment(d).utc().utcOffset("+03:00").format("MM") %>/<%= moment(d).utc().utcOffset("+03:00").format("DD") %>
-                                                       </div>
-                                                       <div class="match-score">
-                                                            <span class="match-score-number
-                                                            <% if(fixture.score.fullTime.home>fixture.score.fullTime.away) { %>
-                                                             match-score-number--leading
-                                                             <% }else{} %>
-                                                             "><%= fixture.score.fullTime.home %></span>
-                                                            <span class="match-score-divider">:</span>
-                                                            <span class="match-score-number <% if(fixture.score.fullTime.home<fixture.score.fullTime.away) { %>
-                                                                 match-score-number--leading
-                                                                 <% }else{} %>"><%= fixture.score.fullTime.away %></span>
-                                                       </div>
-                                                       <div class="match-time-lapsed">
-                                                            
-                          <% if(fixture.status == "FINISHED") { %>
-                              <p>انتهت</p>
-                              <% } else if(fixture.status == "IN_PLAY") { %>
-                              <p>جارية الان</p>
-                                        <% } else { %>
-                                             <p style="color:grey">لم تبدأ</p>
-                                             <% } %>            
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                             <div class="column">
-                                                  <div class="team team--away">
-                                                       <div class="team-logo">
-                                                            <img src="<%= fixture.awayTeam.crest %>" />
-                                                       </div>
-                                                       <h2 class="team-name ofc"><%= fixture.awayTeam.shortName %></h2>
-                                                  </div>
-                                             </div>
-                                        </div>
-                                   </div>
-                                   <% }); %>
+                    <% if(event.status.type == "inprogress") { %>
+                     <div class="match-status"> 
+               مباشر
+                    </div>
+                    <% } else {} %>
+          </div>
+          <div class="match-content">
+               <div class="column">
+                    <div class="team team--home">
+                         <div class="team-logo">
+                              <img src="https://api.sofascore.app/api/v1/team/<%= event.homeTeam.id %>/image" />
+                         </div>
+                         <h2 class="team-name ofc"><%= event.homeTeam.shortName %></h2>
+                    </div>
+               </div>
+               <div class="column">
+                    <div class="match-details">
+                         <div class="match-date">
+                              <strong><% let d = new Date(event.startTimestamp) %>
+                                   <%= moment(d).utc().utcOffset("+03:00").format("hh") %>:<%= moment(d).utc().utcOffset("+03:00").format("mm") %> <%= moment(d).utc().utcOffset("+03:00").format("a") %></strong>
+                                   <%= moment(d).utc().utcOffset("+03:00").format("MM") %>/<%= moment(d).utc().utcOffset("+03:00").format("DD") %>
+                         </div>
+                         <div class="match-score">
+                              <span class="match-score-number
+                              <% if(event.homeScore.current>event.awayScore.current) { %>
+                               match-score-number--leading
+                               <% }else{} %>
+                               "><%= event.homeScore.current %></span>
+                              <span class="match-score-divider">:</span>
+                              <span class="match-score-number <% if(event.homeScore.current<event.awayScore.current) { %>
+                                   match-score-number--leading
+                                   <% }else{} %>"><%= event.awayScore.current %></span>
+                         </div>
+                         <div class="match-time-lapsed">
+                              
+<% if(event.status.type == "finished") { %>
+<p>انتهت</p>
+<% } else if(event.status.type == "inprogress") { %>
+<p>جارية الان</p>
+          <% } else if(event.status.type=="halftime") { %>
+               <p style="color:grey">استراحة</p>
+               <% } else if(event.status.type == "notstarted") { %> 
+                    <p>-</p>
+                    <% } %>           
+                         </div>
+                    </div>
+               </div>
+               <div class="column">
+                    <div class="team team--away">
+                         <div class="team-logo">
+                              <img src=" https://api.sofascore.app/api/v1/team/<%= event.awayTeam.id %>/image" />
+                         </div>
+                         <h2 class="team-name ofc"><%= event.awayTeam.shortName %></h2>
+                    </div>
+               </div>
+          </div>
+     
+          </div>
+
+    <% }); %>
+ <% }); %>
+                                   
                          </div>
                          
                          <% } %>
@@ -132,6 +143,8 @@
           </div>
           <% } %>
      </div>
+     
+     
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

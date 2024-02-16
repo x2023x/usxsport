@@ -96,7 +96,7 @@ body {
 	gap: 1.5rem;
 	width: calc(250px * 3);
 }
-.slider .slide {
+.slider .slidex {
 	height: 100px;
 	width: 250px;
 }
@@ -180,3 +180,69 @@ body {
 	border-radius: 4px;
 	text-decoration: none;
 }
+
+
+    .sdasss{
+        background-position: -15rem center;  
+		background-size: 40rem;
+		background-repeat: no-repeat;
+    }
+
+	.fcard {
+		margin: 0.65rem 0;
+	}
+
+	.tbag{
+		background-position: center;
+	}
+
+	.bi {
+		width: 50px;
+	}
+
+	.feature-icon{
+		padding: 0.3rem;
+		border-radius: 12px;
+		background: rgb(253,203,4);
+		background: linear-gradient(90deg, rgba(253,203,4,1) 0%, rgba(255,228,121,1) 68%);
+	}
+	
+	.follow-section {
+		background-image: url("https://t3.ftcdn.net/jpg/06/50/78/10/360_F_650781022_PbHsGtKoOiJL29Wk9BD8fIVMxlkQbhXC.jpg");
+		width: 100%;
+		background-size: cover;
+		background-color: #ECEEF2;
+		border-radius: 15px;
+		display: flex;
+		padding: 0.4rem 0;
+		flex-direction: column;
+		padding-top: 25px 0;
+		justify-content: center;
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+		border: 1px solid rgba(0, 0, 0, 0.3);
+		align-items: center;
+		max-width: 400px;
+		background-position: center;
+		height: 100px;
+   }
+   
+   .follow-section:hover {
+		filter: brightness(1.1);
+		cursor: pointer;
+   }
+   
+   .follow-section p {
+		color: #fff;
+		font-size: 16px;
+		font-weight: 600;
+   }
+   
+   .follow-section .share-links img {
+		width: 30px;
+		max-width: 30px;
+		height: 30px;
+		box-shadow: rgba(50, 50, 93, 0.9) 0px 50px 100px -20px, rgba(0, 0, 0, 0.9) 0px 30px 60px -30px;
+		aspect-ratio: 1/1;
+		object-fit: contain;
+		max-height: 30px;
+   }
